@@ -1,0 +1,36 @@
+# Site Settings
+title:               README
+tagline:             freddie's Blog
+description:
+baseurl:            "/Lagrange"
+url:                #"https://freddiekim.github.io"
+github:
+  url:               #"https://freddiekim.github.io/Lagrange"
+author:
+  name:              "freddie kim"
+  email:             "freddiekim.sr@gmail.com"
+  twitter:           ""
+  instagram:         ""
+  github:            "freddiekim"
+  facebook:          ""
+  linkedin:          ""
+navigation:
+- title: Blogs
+  url: /Blogs
+- title: Archives
+  url: /Archives
+- title: Links(others)
+  url: /Links(others)
+- title: Search
+  url: /Search
+- title: AboutMe
+  url: /AboutMe
+
+paginate:            5
+disqus:              #"your-disqus"
+
+# Build settings
+markdown:            kramdown
+highlighter:         rouge
+permalink:           none
+gems:                [jekyll-paginate]
