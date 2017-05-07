@@ -41,15 +41,15 @@ image:
 ### 참조 했던 블로그
 
 -	까먹기 전에 참조했던 블로그를 적어 놔야겠다.
--	[jekyll사용법 github사용법](https://youtu.be/oiNVQ9Zjy4o?list=PLWjCJDeWfDdfVEcLGAfdJn_HXyM4Y7_k)
--	[생활 코딩 atom사용법](https://opentutorials.org/module/1579)
--	[markdown 사용법](http://moodle.co.kr/old/help.php?file=advanced_markdown.html#linebreaks)
--	[댓글기능 Disqus장착법](https://youtu.be/etvHFmVCvj8?list=PLm_Qt4aKpfKijgP0rDH7FSJOlS9IBGbT1)
--	[jekyll관련 사이트](https://nolboo.kim/blog/2013/10/15/free-blog-with-github-jekyll/)
+	-	[jekyll사용법 github사용법](https://youtu.be/oiNVQ9Zjy4o?list=PLWjCJDeWfDdfVEcLGAfdJn_HXyM4Y7_k)
+	-	[생활 코딩 atom사용법](https://opentutorials.org/module/1579)
+	-	[markdown 사용법](http://moodle.co.kr/old/help.php?file=advanced_markdown.html#linebreaks)
+	-	[댓글기능 Disqus장착법](https://youtu.be/etvHFmVCvj8?list=PLm_Qt4aKpfKijgP0rDH7FSJOlS9IBGbT1)
+	-	[jekyll관련 사이트](https://nolboo.kim/blog/2013/10/15/free-blog-with-github-jekyll/)
 
 ### 명령어 정리
 
--	로컬 컴퓨터에서 확인할 때 : jekyll serve --watch --baseurl ""
+-	로컬 컴퓨터에서 확인할 때 : #jekyll serve --watch --baseurl ""
 -	markdown 글자체 설치: sudo gem install redcarpet
 
 ### Step1
