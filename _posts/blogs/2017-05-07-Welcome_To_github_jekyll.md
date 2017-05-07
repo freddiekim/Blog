@@ -46,6 +46,7 @@ image:
 	-	[markdown 사용법](http://moodle.co.kr/old/help.php?file=advanced_markdown.html#linebreaks)
 	-	[댓글기능 Disqus장착법](https://youtu.be/etvHFmVCvj8?list=PLm_Qt4aKpfKijgP0rDH7FSJOlS9IBGbT1)
 	-	[jekyll관련 사이트(글))](https://nolboo.kim/blog/2013/10/15/free-blog-with-github-jekyll/)
+	-	[HTML color code 참조](http://html-color-codes.info/Korean/)
 
 ### 명령어 정리
 
