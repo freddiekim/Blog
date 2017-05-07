@@ -2,7 +2,7 @@
 title:               README
 tagline:             freddie's Blog
 description:
-baseurl:            "/Lagrange"
+baseurl:            "/blog"
 url:                #"https://freddiekim.github.io"
 github:
   url:               #"https://freddiekim.github.io/Blog_Lagrange"
@@ -20,7 +20,7 @@ navigation:
 - title: Archives
   url: /Archives
 - title: Diary
-  url: /Diary  
+  url: /Diary
 - title: Links(others)
   url: /Links(others)
 - title: Search
