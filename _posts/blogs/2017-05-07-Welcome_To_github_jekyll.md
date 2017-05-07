@@ -23,7 +23,7 @@ image:
 -	Ruby
 -	atom
 
-### 헤멧던 부분 정리(자문자답)
+### 헤맸던 부분 정리(자문자답)
 
 -	질문1 : 난 github으로 블로그를 만들려고 한다. 그런데 많은 블로그 관리 프로그램이 있다 뭘 써야하나?
 -	답 :
@@ -41,11 +41,11 @@ image:
 ### 참조 했던 블로그
 
 -	까먹기 전에 참조했던 블로그를 적어 놔야겠다.
-	-	[jekyll사용법 github사용법](https://youtu.be/oiNVQ9Zjy4o?list=PLWjCJDeWfDdfVEcLGAfdJn_HXyM4Y7_k)
+	-	[jekyll사용법 github사용법(동영상)](https://youtu.be/oiNVQ9Zjy4o?list=PLWjCJDeWfDdfVEcLGAfdJn_HXyM4Y7_k)
 	-	[생활 코딩 atom사용법](https://opentutorials.org/module/1579)
 	-	[markdown 사용법](http://moodle.co.kr/old/help.php?file=advanced_markdown.html#linebreaks)
 	-	[댓글기능 Disqus장착법](https://youtu.be/etvHFmVCvj8?list=PLm_Qt4aKpfKijgP0rDH7FSJOlS9IBGbT1)
-	-	[jekyll관련 사이트](https://nolboo.kim/blog/2013/10/15/free-blog-with-github-jekyll/)
+	-	[jekyll관련 사이트(글))](https://nolboo.kim/blog/2013/10/15/free-blog-with-github-jekyll/)
 
 ### 명령어 정리
 
@@ -62,3 +62,8 @@ image:
 
 -	github desk라는 프로그램을 설치한다. 이 프로그램 없이 터미널로 할 수 있지만 써보면 왜 이프로그램을 써야하는지 알 수 있다. 정말 편하다.
 -	File - clone repository를 클릭하면 만들수있다.
+-	repository - repository settings 부분에가서 gitignore 부분에 _site를 넣어 준다.
+
+### step3
+
+-	1번 동영상을 참조하는것이 훨씬 더 좋다.
