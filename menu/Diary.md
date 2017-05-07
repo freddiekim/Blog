@@ -2,12 +2,12 @@
 
 layout: page
 
-title: Links(others)
+title: Diary
 
 ---
 
 <ul class="posts">
-  {% for post in site.categories.link %}
+  {% for post in site.categories.diary %}
     {% unless post.next %}
       <h3>{{ post.date | date: '%Y' }}</h3>
     {% else %}

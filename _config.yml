@@ -5,7 +5,7 @@ description:
 baseurl:            "/Lagrange"
 url:                #"https://freddiekim.github.io"
 github:
-  url:               #"https://freddiekim.github.io/Lagrange"
+  url:               #"https://freddiekim.github.io/Blog_Lagrange"
 author:
   name:              "freddie kim"
   email:             "freddiekim.sr@gmail.com"
@@ -19,6 +19,8 @@ navigation:
   url: /Blogs
 - title: Archives
   url: /Archives
+- title: Diary
+  url: /Diary  
 - title: Links(others)
   url: /Links(others)
 - title: Search
