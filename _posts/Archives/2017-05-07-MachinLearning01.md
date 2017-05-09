@@ -31,21 +31,21 @@ image:
 
 ### Repo of study about machine learning.
 
-##### 3
+### 3
 
 머신러닝 정의 : 관계를 알 수 없는 수 많은 데이터들 사이에서 관계를 찾아내주는 기술.
 
 종류 :
 
-##### supervised Learning
+### supervised Learning
 
-###### regression : continuous 한거
+#### regression : continuous 한거
 
 -	hypothesis, linear regression : 예측 되는 데이터와 결과 값 사이의 관계
 -	cost function, loss function : 가장 좋은 hypothesis를 선택하기위해 사용하는 기준
 -	dradient descent : gradient계산을 통해서 함수의 local minimum을 찾아가는 과정.
 	: 적절한 hypothesis찾기 --> loss function 최소 값 : how ? --> gradient descent --> 단점 존재(overfitting and local minimum) : Model selection and Regulation(이건 뭥미?)
 
-###### classification : discrete 한거
+#### classification : discrete 한거
 
-##### unsupervised learning
+### unsupervised learning
