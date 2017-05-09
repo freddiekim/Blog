@@ -1,13 +1,13 @@
 ---
 
-layout: post  
-title: "Welcome to github blog"  
-categories: blog  
-tags: [documentation,sample]  
-image:  
- feature:  
- teaser:  
- credit:  
+layout: post
+title: "Welcome to github blog"
+categories: blog
+tags: [documentation,sample]
+image:
+ feature:
+ teaser:
+ credit:
  creditlink:
 
 ---
@@ -29,7 +29,7 @@ image:
 -	답 :
 	-	hugo
 	-	octopress
-	-	jekyll  
+	-	jekyll
 
 등등 많은 프로그램이 있었다. 그래서 다 한번씩 설치를 해봤다. 다 2분 3분만에 설치하고 블로그를 만들 수 있다고 광고해서 해봤지만 난 솔직히 시간이 많이 걸렸다. 시간은 Top secret이다. 이유는 모든게 다 처음이기때문이다. 예로 git을 terminal로는 처음 사용해봐서 이해를 못했다. 그래서 실수를 많이 했다.
 
@@ -47,6 +47,9 @@ image:
 	-	[댓글기능 Disqus장착법](https://youtu.be/etvHFmVCvj8?list=PLm_Qt4aKpfKijgP0rDH7FSJOlS9IBGbT1)
 	-	[jekyll관련 사이트(글))](https://nolboo.kim/blog/2013/10/15/free-blog-with-github-jekyll/)
 	-	[HTML color code 참조](http://html-color-codes.info/Korean/)
+  -	[markdown editor 사용법](http://futurecreator.github.io/2016/06/14/atom-as-markdown-editor/)
+    :	Setting>install>language-markdown 으로 Package를 설치하면 Enter치면 자동으로 줄 바꿈이 된다.
+    
 
 ### 명령어 정리
 
@@ -55,8 +58,8 @@ image:
 
 ### Step1
 
--	github.com 홈페이지 들어가서 repository를 만든다.  
--	master로 되어있는 부분을 gh-pages로 변경한다. 그 다음 branch로 가서 gh-pages로 변경하고 master는 삭제한다.  
+-	github.com 홈페이지 들어가서 repository를 만든다.
+-	master로 되어있는 부분을 gh-pages로 변경한다. 그 다음 branch로 가서 gh-pages로 변경하고 master는 삭제한다.
 -	setting에가 보면 자기가 만든 주소를 확인할 수있는데 그 주소를 누르면 자신이 github에서 만든 사이트를 확인 할 수 있다. 내 주소는이다.
 
 ### step2
