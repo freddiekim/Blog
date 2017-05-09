@@ -48,8 +48,9 @@ image:
 	-	[jekyll관련 사이트(글))](https://nolboo.kim/blog/2013/10/15/free-blog-with-github-jekyll/)
 	-	[HTML color code 참조](http://html-color-codes.info/Korean/)
   -	[markdown editor 사용법](http://futurecreator.github.io/2016/06/14/atom-as-markdown-editor/)
-    :	Setting>install>language-markdown 으로 Package를 설치하면 Enter치면 자동으로 줄 바꿈이 된다.
-    
+    :	<del>Setting>install>language-markdown 으로 Package를 설치하면 Enter치면 자동으로 줄 바꿈이 된다.</del><br>
+    : < br > 을 추가하면 자동 줄 바꿈이 된다. 헐 귀찮다. 왜지?
+
 
 ### 명령어 정리
 
