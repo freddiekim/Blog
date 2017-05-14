@@ -26,17 +26,17 @@ image:
 난 맥과 윈도우를 부트캠프로 같이 사용하고 있는데 윈도우가 이상할때가 있다.<br>
 근데 윈도우가 문제인데 맥을 초기화하지 않으면 고쳐질것 같지 않다.ㅡ.ㅡ....<br>
 알면 쉽지만 모를때는 어렵다.ㅡㅡ....<br>
-맥 초기화 방법(http://windwaker.net/1908)<br>
+[맥 초기화 방법](http://windwaker.net/1908)<br>
 
 #### 공부 중 좋은사이트
 꽤 유명한 사이트 다크 프로그래머<br>
 선형대수를 속성으로 공부하기에 참좋은 글이다.<br>
-선형대수학#1(http://darkpgmr.tistory.com/103)<br>
+[선형대수학#1](http://darkpgmr.tistory.com/103)<br>
 선형대수학#2
 선형대수학#3
 선형대수학#4
-선형대수학#5(http://darkpgmr.tistory.com/108)<br>
-선형대수학#6(http://darkpgmr.tistory.com/110)<br>
+[선형대수학#5](http://darkpgmr.tistory.com/108)<br>
+[선형대수학#6](http://darkpgmr.tistory.com/110)<br>
 
 machine learning & Data Science라는 사이트인데 좋다<br>
-SVM(http://gentlej90.tistory.com/category/ML%20%26%20DM/SVM)<br>
+[SVM](http://gentlej90.tistory.com/category/ML%20%26%20DM/SVM)<br>
