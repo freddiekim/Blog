@@ -22,21 +22,35 @@ image:
 이 블로그를 만들면서 느끼는거지만 동영상 강의를 통해서 기초부터 익히고 다시 글을 읽는 방식으로 가야겠다.<br>
 같은 글을 읽어도 어느 정도 알고 보는 것과 기초가 없는 상태에서 보는 것은 차이가 큰 것같다.<br>
 
+-5/17
+내가 정리를하는것 보다 인터넷이 자료가 훨 많다. ㅡㅡ....<br>
+내가 공부하고 이해한 내용을 적으려고했는데...기억이 나지 않을때 그냥 참고 했던 사이트를 보는 것이 더 좋다.<br>
+아래 내용부터 정확하게 이해해야겠다.
+
+영어공부도해야하는 되는데<br>
+
 #### 맥 초기화 하기
 난 맥과 윈도우를 부트캠프로 같이 사용하고 있는데 윈도우가 이상할때가 있다.<br>
 근데 윈도우가 문제인데 맥을 초기화하지 않으면 고쳐질것 같지 않다.ㅡ.ㅡ....<br>
 알면 쉽지만 모를때는 어렵다.ㅡㅡ....<br>
 [맥 초기화 방법](http://windwaker.net/1908)<br>
 
+#### 마크다운 사용법
+[SanghyukChun's Blog-98](http://sanghyukchun.github.io/98/)
+
 #### 공부 중 좋은사이트
 꽤 유명한 사이트 다크 프로그래머<br>
 선형대수를 속성으로 공부하기에 참좋은 글이다.<br>
 [선형대수학#1](http://darkpgmr.tistory.com/103)<br>
-선형대수학#2
-선형대수학#3
-선형대수학#4
+[선형대수학#2](http://darkpgmr.tistory.com/104)<br>
+[선형대수학#3](http://darkpgmr.tistory.com/105)<br>
+[선형대수학#4](http://darkpgmr.tistory.com/106)<br>
 [선형대수학#5](http://darkpgmr.tistory.com/108)<br>
 [선형대수학#6](http://darkpgmr.tistory.com/110)<br>
 
 machine learning & Data Science라는 사이트인데 좋다<br>
 [SVM](http://gentlej90.tistory.com/category/ML%20%26%20DM/SVM)<br>
+
+Distance matric learning<br>
+사실 이사이트 보다가 위 사이트 갔다. ㅡㅡ.....<br>
+[SanghyukChun's Blog-38](http://sanghyukchun.github.io/37/)
