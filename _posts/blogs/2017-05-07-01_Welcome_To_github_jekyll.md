@@ -54,7 +54,7 @@ image:
 
 ### 명령어 정리
 
--	로컬 컴퓨터에서 확인할 때 : #jekyll serve --watch --baseurl ""
+-	로컬 컴퓨터에서 확인할 때 : #jekyll serve --watch --baseurl ''
 -	markdown 글자체 설치: sudo gem install redcarpet
 
 ### Step1
