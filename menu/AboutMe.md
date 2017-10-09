@@ -14,5 +14,5 @@ I don't want to be interested in one thing.
 
 I want to be studying the different topic what I am interested in at that time.
 
-I am going to leave a trace of my learning here. It may or may not be helpful  
-for many people visiting my blog. however I will try to make this blog a precious space for me.
+I am going to leave a trace about my learning here. It may or may not be helpful for many people visiting my blog.
+however I will try to make this blog a precious space for me.

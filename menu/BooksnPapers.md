@@ -2,12 +2,12 @@
 
 layout: page
 
-title: Archives
+title: BooksnPapers
 
 ---
 
 <ul class="posts">
-  {% for post in site.categories.Archives %}
+  {% for post in site.categories.BooksnPapers %}
     {% unless post.next %}
       <h3>{{ post.date | date: '%Y' }}</h3>
     {% else %}

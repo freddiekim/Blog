@@ -4,7 +4,7 @@ layout: post
 
 title: "Interesting sites in 2017"
 
-categories: link
+categories: Links
 
 tags: [documentation,interesting sites]
 

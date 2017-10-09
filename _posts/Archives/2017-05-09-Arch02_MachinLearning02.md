@@ -1,8 +1,8 @@
 ---
 
 layout: post
-title: "Machine Learning - 01"
-categories: archive
+title: "ML02 : Machine Learning - 01"
+categories: Archives
 tags: [documentation,sample]
 meta: ""
 topic: "Distance metric"

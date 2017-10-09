@@ -2,7 +2,7 @@
 
 layout: post
 title: "Install python2 & python3 for mac os"
-categories: blog
+categories: Archives
 tags: [documentation,sample]
 image:
  feature:

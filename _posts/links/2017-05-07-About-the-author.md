@@ -4,7 +4,7 @@ layout: post
 
 title: "About the original Author"
 
-categories: link
+categories: Links
 
 tags: [documentation,sample]
 

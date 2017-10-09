@@ -2,7 +2,7 @@
 
 layout: post
 title: "Welcome to github blog"
-categories: blog
+categories: Archives
 tags: [documentation,sample]
 image:
  feature:

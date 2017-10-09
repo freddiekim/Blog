@@ -1,8 +1,8 @@
 ---
 
 layout: post
-title: "Machine Learning - basic01"
-categories: archive
+title: "ML01 : Machine Learning - basic01"
+categories: Archives
 tags: [documentation,sample]
 meta: ""
 topic: "Machine Learning"
