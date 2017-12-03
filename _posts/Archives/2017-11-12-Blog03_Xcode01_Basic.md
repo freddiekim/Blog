@@ -2,7 +2,7 @@
 
 layout: post
 title: "Xcode_shortkey"
-categories: BooksnPapers
+categories: Archives
 tags: [documentation,diary]
 image:
  feature:
