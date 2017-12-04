@@ -23,3 +23,8 @@ image:
 수식 시작 : `` $$ `` 으로 시작하고 `` $$ ``으로 끝남. \\
 덩어리로 묶기 : { } 사용   \\
 예약어 문자로 사용하기 : use two or more backticks
+
+테이블 alignment definition
+if there is a colon only before the dashes, the column is left aligned, \\
+if there are colons before and after the dashes, the column is center aligned \\
+and if there is only a colon after the dashes, the column is right aligned.
