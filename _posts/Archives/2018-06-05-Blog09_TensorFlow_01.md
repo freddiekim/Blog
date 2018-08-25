@@ -361,6 +361,192 @@ image:
 ~~~
 - 위 예제는 파일로 하는 예제이다. 입력은 3개 단순한 예제이다.
 
+05 - Logistic Classification
+- 해당 사이트가 설명을 잘하고 있다. [링크](https://blog.naver.com/lyshyn/221285013102)
+- 우선 예/아니오 같은 2가지로 분류하는 방법이다.
+- linear regression에서 파생된것으로 y = wx + b의 함수를 찾는 방법이다.
+- 그러나 관측값과 예측값의 차이 즉 residual은 보통 0~1사이의 값을 가지지 않는다.
+- 그래서 logistic regression을 사용해서 0~1사이의 값을 가지도록한다. 그래서 관측값과 예측값의 차이는 0~1사이의 값을 가지게 된다.
+- 1/(1+exp(-W*X))
+~~~ python
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    train_data = np.loadtxt(script_dir + '/train.txt', unpack=True, dtype='float32')
+
+    x_data = train_data[0:-1]
+    y_data = train_data[-1]
+
+    X = tf.placeholder(tf.float32)
+    Y = tf.placeholder(tf.float32)
+
+    W = tf.Variable(tf.random_uniform([1, len(x_data)], -1.0, 1.0))
+
+    h = tf.matmul(W, X)
+    hypothesis = tf.div(1., 1. + tf.exp(-h))
+
+    cost = -tf.reduce_mean(Y*tf.log(hypothesis) + (1-Y)*tf.log(1 - hypothesis))
+
+    a = tf.Variable(0.1)
+    optimizer = tf.train.GradientDescentOptimizer(a)
+    train = optimizer.minimize(cost)
+
+    init = tf.global_variables_initializer()
+    sess = tf.Session()
+    sess.run(init)
+
+    print((x_data))
+    print((y_data))
+    for step in range(2001):
+        sess.run(train, feed_dict={X: x_data, Y: y_data})
+        if step % 20 == 0:
+            print(step, sess.run(cost, feed_dict={X: x_data, Y: y_data}), sess.run(W))
+
+    print(sess.run(hypothesis, feed_dict={X: [[1], [2], [1]]}))
+    print(sess.run(hypothesis, feed_dict={X: [[1], [3], [2]]}))
+    print(sess.run(hypothesis, feed_dict={X: [[1], [3], [4]]}))
+    print(sess.run(hypothesis, feed_dict={X: [[1], [5], [5]]}))
+    print(sess.run(hypothesis, feed_dict={X: [[1], [7], [5]]}))
+    print(sess.run(hypothesis, feed_dict={X: [[1], [2], [5]]}))
+# results
+x_data : [[1. 1. 1. 1. 1. 1.]
+ [2. 3. 3. 5. 7. 2.]
+ [1. 2. 4. 5. 5. 5.]]
+y_data : [0. 0. 0. 1. 1. 1.]
+cost : 0.18209474 w : [[-7.674424    0.22860983  1.7167399 ]]
+
+[[0.00404762]]
+[[0.02768637]]
+[[0.4694207]]
+[[0.8862563]]
+[[0.9248713]]
+[[0.79688966]]
+~~~
+위에 입력을 다시 넣어봤다. [[1], [3], [4]]는 확률이 0.4가 나왔다.
+~~~ python
+  print( sess.run(hypothesis, feed_dict={X: [[1], [2], [2]]}) )
+  print( sess.run(hypothesis, feed_dict={X: [[1], [5], [5]]}) )
+  print( sess.run(hypothesis, feed_dict={X: [[1, 1], [4, 3], [3, 5]]}) )
+#results
+  [[0.02343233]]
+  [[0.8850991]]
+  [[0.17097047 0.83019507]]
+~~~
+솔직히 이건 끝의 자리가 5이냐 아니냐이다. 그래서 위를 보면 5일때 0.5를 넘고 5가아니면 0.5가 넘지 않게 나오고 있는것을 확인할 수있다.
+
+06 - Softmax Regression
+
+softmax = tf.exp(logits) / tf.reduce_sum(tf.exp(logits), axis)
+- tensorflow 설명 : https://www.tensorflow.org/api_docs/python/tf/nn/softmax
+- sigmoid와 softmax의 차이 : [링크]( http://dataaspirant.com/2017/03/07/difference-between-softmax-function-and-sigmoid-function/)
+~~~ python
+  import tensorflow as tf
+  import numpy as np
+  import os
+
+  script_dir = os.path.dirname(os.path.abspath(__file__))
+  train_data = np.loadtxt(script_dir + '/train.txt', unpack=True, dtype='float32')
+  x_data = np.transpose(train_data[0:3])
+  y_data = np.transpose(train_data[3:])
+
+  X = tf.placeholder('float', [None, 3])
+  Y = tf.placeholder('float', [None, 3])
+
+  W = tf.Variable(tf.zeros([3, 3]))
+
+  hypothesis = tf.nn.softmax(tf.matmul(X,W))
+  hypothesis_matmul2 = tf.exp(tf.matmul(X, W))
+
+  learning_rate = 0.001
+
+  cost = tf.reduce_mean(-tf.reduce_sum(Y * tf.log(hypothesis), reduction_indices=1))
+
+  optimizer = tf.train.GradientDescentOptimizer(learning_rate)
+  train = optimizer.minimize(cost)
+
+  init = tf.global_variables_initializer()
+
+  with tf.Session() as sess:
+      sess.run(init)
+
+      for step in xrange(2001):
+          sess.run(train, feed_dict={X: x_data, Y: y_data})
+          if step % 20 == 0:
+              print step, sess.run(cost, feed_dict={X: x_data, Y: y_data}), sess.run(W)
+
+    print(step, sess.run(hypothesis, feed_dict={X: [[1, 11, 7]]}))
+    print(step, sess.run(hypothesis_matmul2, feed_dict={X: [[1, 11, 7]]}))
+
+    a = sess.run(hypothesis, feed_dict={X: [[1, 11, 7]]})
+    print(a, sess.run(tf.argmax(a, 1)))
+
+# results
+2000 0.34592387
+[[-0.0725141  -0.01358804  0.0861021 ]
+ [ 0.02000793 -0.01168452 -0.00832341]
+ [ 0.02207616  0.06482336 -0.08689948]]
+2000 [[0.4149794  0.41895702 0.16606359]]
+2000 [[1.352705   1.3656708  0.54131615]]
+[[0.4149794  0.41895702 0.16606359]] [1]
+~~~
+- 위 결과를 보면
+results(1) = 1.352705 /(1.352705  + 1.3656708  + 0.54131615)
+cost = tf.reduce_mean(-tf.reduce_sum(Y * tf.log(hypothesis), reduction_indices=1))
+로 학습을 하는것을 볼 수 있다.
+위 예제는 학습을 할때는 9x3으로 학습 하는것을 알 수 있다.
+즉 입력 9x3 x 3x3(weight) = 출력 9x3으로 학습이 되는 것을 알 수 있다.
+argmax는 가장 큰 값의 인덱스를 알려준다.
+
+Accuracy
+
+~~~ python
+  import tensorflow as tf
+
+  from tensorflow.examples.tutorials.mnist import input_data
+  mnist = input_data.read_data_sets("mnist/data/", one_hot=True)
+
+  learning_rate = 0.01
+  training_epochs = 25
+  batch_size = 100
+  display_step = 10
+
+  x = tf.placeholder(tf.float32, shape=[None, 784])
+  y = tf.placeholder(tf.float32, shape=[None, 10])
+
+  W = tf.Variable(tf.zeros([784, 10]))
+  b = tf.Variable(tf.zeros([10]))
+
+  pred = tf.nn.softmax(tf.matmul(x, W) + b)
+
+  cost = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=1))
+
+  train = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
+
+  init = tf.global_variables_initializer()
+
+  with tf.Session() as sess:
+      sess.run(init)
+
+      for epoch in range(training_epochs):
+          avg_cost = 0.
+          total_batch = int(mnist.train.num_examples/batch_size)
+
+          for i in range(total_batch):
+              batch_xs, batch_ys = mnist.train.next_batch(batch_size)
+              _, c = sess.run([train, cost], feed_dict={x: batch_xs, y: batch_ys})
+              avg_cost += c / total_batch
+
+          if (epoch + 1) % display_step == 0:
+              print "Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(avg_cost)
+
+      print 'Optimization Finished!'
+
+      correct_prediction = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))
+
+      accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
+      print "Accuracy:", accuracy.eval({x: mnist.test.images, y: mnist.test.labels})
+~~~
+
 <!-- 02 - Linear Regression 까지 완료
 - 이것 저것 해보면서 tensroflow의 기본을 익히기에 참 좋은 예제인 것 같다.
 - When in the Go to Class, Go to Symbol, or Go to File popup,
@@ -372,3 +558,4 @@ image:
 - 해당 사이트가 설명을 잘하고 있다. [링크](https://blog.naver.com/lyshyn/221285013102)
 - 해당글을 찾아보다가 이해가 안돼서 다시 찾았다. 여기 나와 있다. 어렵네....
 - 파이썬 김이라는 사이트인데 좋다.[Logistic Regression]http://pythonkim.tistory.com/22?category=573319
+- 딥러닝 논문읽기 모임 https://www.youtube.com/watch?v=iqN08EPMjSs&index=68&list=PLlMkM4tgfjnJhhd4wn5aj8fVTYJwIpWkS
