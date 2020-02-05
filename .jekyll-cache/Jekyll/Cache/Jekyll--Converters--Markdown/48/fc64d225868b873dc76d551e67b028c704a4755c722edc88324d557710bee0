@@ -1,0 +1,38 @@
+I"�	<h4 id="time--2017-11-30">Time : 2017-11-30</h4>
+<h4 id="feeling--good">Feeling : Good!</h4>
+<h4 id="title-">Title :</h4>
+<p>어떻게 인생을 살아야할지는 내가 죽을때 까지 고민해야하는 것이다.<br />
+그러나 삶을 살면서 내가 도전하고 할 수있는 것들은 줄어든다. <br />
+그렇기에 난 하루하루 내가 선택한것이 정말로 맞는 것인가? 고민한다.<br />
+여기는 오픈된 공간이기때문에 솔직히 적기가 그렇다. <br />
+그러나 제목처럼 난 항상 생각하고 고민한다. 그리고 다시 생각한다. <br />
+어떤 식으로 살아야 후회 없이 살 수 있으까? 하고…. <br />
+시간도 한정적이고 능력도 한정적이다. \</p>
+
+<p>Martin Fowler 저서 : 리팩토링: 프로그램의 가치를 높이는 코드 정리 기술(2012)</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="n">url</span> <span class="o">==</span> <span class="n">null</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">null</span><span class="p">;</span>
+<span class="k">else</span>
+  <span class="k">return</span> <span class="n">url</span><span class="p">.</span><span class="n">getPath</span><span class="p">();</span>
+<span class="o">--&gt;</span> <span class="n">url</span> <span class="o">==</span> <span class="n">null</span> <span class="o">?</span> <span class="n">null</span> <span class="o">:</span> <span class="n">url</span><span class="p">.</span><span class="n">getPath</span><span class="p">();</span>
+</code></pre></div></div>
+<p>장황한 내용은 의도를 파악하기 어렵다.\</p>
+
+<p>step1. Making a Restaurant reservation<br />
+the lesson title tells you what you will practice speaking today.\</p>
+
+<p>Preview<br />
+these sections list the lesson dialogue’s key vocabulary and expressions.\</p>
+
+<h4 id="time--2017-12-11">Time : 2017-12-11</h4>
+<h4 id="feeling--not-bad">Feeling : Not bad!</h4>
+<h4 id="title--1">Title :</h4>
+
+<p>오늘 결혼식 다녀오고 하루 종일 뒹굴뒹굴 놀다가 좋은 사이트를 발견했다.<br />
+음……인문학도도 이정도 공부하고 열심히하는데 난.. ㅎㅎ <br />
+인생에대해서 생각이 많은 계절이다. \</p>
+
+<p><a href="https://m.blog.naver.com/jahyeha_/221151704818">모두를 위한 딥러닝/텐서플로우</a> <br />
+<a href="http://laonple.blog.me/220463627091">라온피플 머신러닝 아카데미</a></p>
+:ET

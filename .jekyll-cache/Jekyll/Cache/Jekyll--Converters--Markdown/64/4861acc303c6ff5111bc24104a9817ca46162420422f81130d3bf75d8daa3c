@@ -1,0 +1,657 @@
+I"�e<h4 id="time--2018-05-20">Time : 2018-05-20</h4>
+<h4 id="title--pycharm---02">Title : Pycharm - 02</h4>
+<ul>
+  <li>파이썬으로 배우는 알고리즘 트레이딩 실전 예를 작성해보면서 익히려고 한다.</li>
+  <li>여기서는 실제로 툴을 만들어보면서 작성한 내용을 적으려고한다.</li>
+  <li>난 계정이 없기 때문에 똑같이 따라하기는 힘들것 같다.</li>
+  <li>우선 실전프로그램을 보면서 따라할수 있는것은하고 필요없는 부분은 패스 한다.(https://wikidocs.net/2878)
+^화살표위 = shift+ctrl
+esc</li>
+</ul>
+
+<ol>
+  <li>창에서 또다른 창 띄우는것은?
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=dRRpbDFnMHI&amp;t=354s">PyQt : Open Other Window When Button Clicked</a></li>
+      <li>매우 짧은 동영상 강의임.</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">from</span> <span class="nn">otherwindow</span> <span class="kn">import</span> <span class="n">Ui_otherwindow</span>
+    <span class="c1"># 이 구문을 보면 from 파일이름 import 클래스 이름 구조인것을 알 우 있음.
+</span>    <span class="k">def</span> <span class="nf">openWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="n">Ui_otherwindow</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">)</span>
+        <span class="n">MainWindow</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">pushButton</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">openWindow</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>MainWindow.py에 위 구문을 추가하면 새로운 창을 띄울 수 있다. 그러나 치명적인 단점이 내가 GUI를 수정하고</li>
+  <li>pyuic5 -x mainwindow.ui -o mainwindow.py</li>
+  <li>해당 명령어로 mainwindow.py 파일을 만들면 다 사라진다. 이게 멍미 ㅡㅡ….</li>
+</ul>
+
+<ol>
+  <li>파일을 이용해서 1.에서 구현한거 똑 같이 구현하기
+    <ul>
+      <li>위에 적은거 처럼 pyuic5 -x mainwindow.ui -o mainwindow.py 식으로 파일을 만들면 기존에 만든것이 다 사라진다.</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">sys</span>
+  <span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="o">*</span>
+  <span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">uic</span>
+  <span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
+  <span class="c1"># Dialog 혹은 window여도 상관없음. 내가 추가로 만든Gui클래스를 import하고 띄우면됨.
+</span>  <span class="kn">from</span> <span class="nn">otherwindow</span> <span class="kn">import</span> <span class="n">Ui_otherwindow</span>
+
+  <span class="c1"># 파일을 로드한다.
+</span>  <span class="n">form_class</span> <span class="o">=</span> <span class="n">uic</span><span class="o">.</span><span class="n">loadUiType</span><span class="p">(</span><span class="s">"mainwindow.ui"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+  <span class="c1"># form_class와 QMainWindow 다중 상속 받음.
+</span>  <span class="k">class</span> <span class="nc">mainwindow</span><span class="p">(</span><span class="n">QMainWindow</span><span class="p">,</span> <span class="n">form_class</span><span class="p">):</span>
+      <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+          <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">pushButton</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">btn_clicked</span><span class="p">)</span>
+
+      <span class="k">def</span> <span class="nf">btn_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QDialog</span><span class="p">()</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="n">Ui_otherwindow</span><span class="p">()</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">)</span>
+          <span class="n">myWindow</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+  <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+      <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+      <span class="n">myWindow</span> <span class="o">=</span> <span class="n">mainwindow</span><span class="p">()</span>
+      <span class="n">myWindow</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+      <span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ol>
+  <li>웹 페이지 크롤링
+    <ul>
+      <li><a href="https://wikidocs.net/6660">강좌 링크</a></li>
+      <li>Beautiful Soup, Scarpy 등을 사용할 수 있지만 예제가 pandas이므로 “html5lib”를 설치해서 크롤링을 한다.</li>
+      <li>크롤링을 이해하는 것은 어렵다. 예제로 쑥쑥되면 좋겠지만 역시 기초가 다시 발목을 잡는다.</li>
+      <li>2장 웹페이지 크롤링 ~ 6장 배당률 기반 투자 알고리즘 구현을 차례대로 구현해보고 정리해서 적어보자.</li>
+      <li>언어도 말을해야 자기것이 되듯이 코드도 직접짜고 정리해봐야 내것이 된다.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>2장 step1</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+  <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s">"table.html"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+  <span class="c1"># 출력
+</span>  <span class="c1">#print(df)
+</span>  <span class="mi">0</span>  <span class="n">years</span>  <span class="mi">2013</span>  <span class="mi">2014</span>  <span class="mi">2015</span>
+  <span class="mi">1</span>  <span class="n">sales</span>   <span class="mi">100</span>   <span class="mi">200</span>   <span class="mi">300</span>
+  <span class="c1">#df.index
+</span>  <span class="n">RangeIndex</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  <span class="c1">#df.columns
+</span>  <span class="n">Int64Index</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'int64'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>2장 step2</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">requests</span>
+
+  <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+  <span class="k">def</span> <span class="nf">get_financial_statements</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+      <span class="n">url</span> <span class="o">=</span> <span class="s">"http://companyinfo.stock.naver.com/v1/company/ajax/cF1001.aspx?cmp_cd=</span><span class="si">%</span><span class="s">s&amp;fin_typ=0&amp;freq_typ=Y"</span> <span class="o">%</span> <span class="p">(</span><span class="n">code</span><span class="p">)</span>
+      <span class="k">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'&lt;th class="bg r01c02 endLine line-bottom"colspan="8"&gt;연간&lt;/th&gt;'</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"&lt;span class='span-sub'&gt;(IFRS연결)&lt;/span&gt;"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s">'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\r</span><span class="s">'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'주요재무정보&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;'</span><span class="p">,</span> <span class="s">"주요재무정보&lt;/th&gt;"</span><span class="p">)</span>
+
+      <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span> <span class="mi">2021</span><span class="p">):</span>
+          <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">):</span>
+              <span class="n">month</span> <span class="o">=</span> <span class="s">"/</span><span class="si">%02</span><span class="s">d"</span> <span class="o">%</span> <span class="n">month</span>
+              <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="n">month</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">))</span>
+
+          <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+              <span class="n">month</span> <span class="o">=</span> <span class="s">"/</span><span class="si">%02</span><span class="s">d"</span> <span class="o">%</span> <span class="n">month</span>
+              <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">month</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">))</span>
+
+          <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s">'(E)'</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">))</span>
+
+      <span class="n">df_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+      <span class="n">df</span> <span class="o">=</span> <span class="n">df_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+      <span class="n">df_DataFrame</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">get_values</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_values</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s">'주요재무정보'</span><span class="p">])</span>
+
+      <span class="k">print</span><span class="p">(</span><span class="n">df_DataFrame</span><span class="p">)</span>
+      <span class="k">print</span><span class="p">(</span><span class="n">df_DataFrame</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+      <span class="k">print</span><span class="p">(</span><span class="n">df_DataFrame</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+      <span class="n">get_financial_statements</span><span class="p">(</span><span class="s">'035720'</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>여기까지만 해보면 의미를 좀 알 수 있음.</li>
+  <li>여기서 replace의 순서가 변경되면 잘 동작하지 않음. 그럼 위 같은 것은 어떻게 작성하냐?</li>
+  <li>구글에서 검색해보면 나옴. 그러나 그것을 보고 위처럼하기는 쉽지 않아 보임.</li>
+  <li>DataFrame을 다시 생성했다. 이유는 read_html이 예제처럼 동작하지 않아서 index값을 가져오지 못했다.</li>
+  <li>이것때문에 고생을 좀 많이 했다.</li>
+</ul>
+
+<p>3장/4장 배당률 기반 투자 알고리즘</p>
+
+<ul>
+  <li>이번 절에서는 앞서 파싱한 재무제표 데이터를 바탕으로 국채시가배당률이 높은 종목을 선정하는 프로그램을 구현하겠습니다.</li>
+  <li>아직 4장까지만 봤는데 5장6장을 봐야 전체를 이해할 수 있을듯 싶다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">requests</span>
+
+  <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+  <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+  <span class="kn">import</span> <span class="nn">datetime</span>
+
+
+  <span class="k">def</span> <span class="nf">get_financial_statements</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+      <span class="n">url</span> <span class="o">=</span> <span class="s">"http://companyinfo.stock.naver.com/v1/company/ajax/cF1001.aspx?cmp_cd=</span><span class="si">%</span><span class="s">s&amp;fin_typ=0&amp;freq_typ=Y"</span> <span class="o">%</span> <span class="p">(</span><span class="n">code</span><span class="p">)</span>
+      <span class="k">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'&lt;th class="bg r01c02 endLine line-bottom"colspan="8"&gt;연간&lt;/th&gt;'</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"&lt;span class='span-sub'&gt;(IFRS연결)&lt;/span&gt;"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"&lt;span class='span-sub'&gt;(IFRS별도)&lt;/span&gt;"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s">'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\r</span><span class="s">'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'주요재무정보&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;'</span><span class="p">,</span> <span class="s">"주요재무정보&lt;/th&gt;"</span><span class="p">)</span>
+
+      <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span> <span class="mi">2021</span><span class="p">):</span>
+          <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">):</span>
+              <span class="n">month</span> <span class="o">=</span> <span class="s">"/</span><span class="si">%02</span><span class="s">d"</span> <span class="o">%</span> <span class="n">month</span>
+              <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="n">month</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">))</span>
+
+          <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+              <span class="n">month</span> <span class="o">=</span> <span class="s">"/</span><span class="si">%02</span><span class="s">d"</span> <span class="o">%</span> <span class="n">month</span>
+              <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">month</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">))</span>
+
+          <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s">'(E)'</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">))</span>
+
+      <span class="n">df_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+      <span class="n">df</span> <span class="o">=</span> <span class="n">df_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+      <span class="n">df_DataFrame</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">get_values</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_values</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s">'주요재무정보'</span><span class="p">])</span>
+
+      <span class="c1"># print(df_DataFrame)
+</span>      <span class="c1"># print(df_DataFrame.columns)
+</span>      <span class="c1"># print(df_DataFrame.index)
+</span>      <span class="k">return</span> <span class="n">df_DataFrame</span>
+
+
+  <span class="k">def</span> <span class="nf">get_3year_treasury</span><span class="p">():</span>
+      <span class="n">url</span> <span class="o">=</span> <span class="s">"http://www.index.go.kr/strata/jsp/showStblGams3.jsp?stts_cd=288401&amp;idx_cd=2884&amp;freq=Y&amp;period=1998:2016"</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+      <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+      <span class="n">tr_data</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'tr'</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s">'tr_288401_1'</span><span class="p">)</span>
+      <span class="n">td_data</span> <span class="o">=</span> <span class="n">tr_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'td'</span><span class="p">)</span>
+
+      <span class="c1"># print(td_data)
+</span>      <span class="k">print</span><span class="p">(</span><span class="n">td_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+      <span class="n">treasury_3year</span> <span class="o">=</span> <span class="p">{}</span>
+      <span class="n">start_year</span> <span class="o">=</span> <span class="mi">1998</span>
+
+      <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">td_data</span><span class="p">:</span>
+          <span class="n">treasury_3year</span><span class="p">[</span><span class="n">start_year</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">text</span>
+          <span class="n">start_year</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="k">print</span><span class="p">(</span><span class="n">treasury_3year</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">get_dividend_yield</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+      <span class="n">url</span> <span class="o">=</span> <span class="s">"http://companyinfo.stock.naver.com/company/c1010001.aspx?cmp_cd="</span> <span class="o">+</span> <span class="n">code</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+
+      <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+      <span class="n">td_data</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'td'</span><span class="p">,</span> <span class="p">{</span><span class="s">'class'</span><span class="p">:</span> <span class="s">'cmp-table-cell td0301'</span><span class="p">})</span>
+      <span class="n">dt_data</span> <span class="o">=</span> <span class="n">td_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'dt'</span><span class="p">)</span>
+
+      <span class="n">dividend_yield</span> <span class="o">=</span> <span class="n">dt_data</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+      <span class="n">dividend_yield</span> <span class="o">=</span> <span class="n">dividend_yield</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="n">dividend_yield</span> <span class="o">=</span> <span class="n">dividend_yield</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+      <span class="k">print</span><span class="p">(</span><span class="n">dividend_yield</span><span class="p">)</span>
+      <span class="c1"># return dividend_yield
+</span>
+  <span class="k">def</span> <span class="nf">get_current_3year_treasury</span><span class="p">():</span>
+      <span class="n">url</span> <span class="o">=</span> <span class="s">"http://info.finance.naver.com/marketindex/interestDailyQuote.nhn?marketindexCd=IRR_GOVT03Y&amp;page=1"</span>
+      <span class="n">html</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+
+      <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+      <span class="n">tbody_data</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'tbody'</span><span class="p">)</span>
+      <span class="n">tr_data</span> <span class="o">=</span> <span class="n">tbody_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'tr'</span><span class="p">)</span>
+      <span class="n">td_data</span> <span class="o">=</span> <span class="n">tr_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'td'</span><span class="p">)</span>
+      <span class="c1"># return td_data[1].text
+</span>      <span class="k">print</span><span class="p">(</span><span class="n">td_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">get_estimated_dividend_yield</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+      <span class="n">df</span> <span class="o">=</span> <span class="n">get_financial_statements</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+      <span class="n">dividend_yield</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s">"현금배당수익률"</span><span class="p">]</span>
+
+      <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+      <span class="n">cur_year</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">year</span>
+
+      <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_year</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dividend_yield</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+          <span class="n">cur_year_dividend_yield</span> <span class="o">=</span> <span class="n">dividend_yield</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cur_year</span><span class="p">)]</span>
+          <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">cur_year_dividend_yield</span><span class="p">):</span>
+              <span class="k">return</span> <span class="n">dividend_yield</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cur_year</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+          <span class="k">else</span><span class="p">:</span>
+              <span class="k">return</span> <span class="n">cur_year_dividend_yield</span>
+      <span class="k">else</span><span class="p">:</span>
+          <span class="k">return</span> <span class="n">dividend_yield</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cur_year</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+
+  <span class="k">def</span> <span class="nf">get_previous_dividend_yield</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+      <span class="n">df</span> <span class="o">=</span> <span class="n">get_financial_statements</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+      <span class="n">dividend_yield</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s">'현금배당수익률'</span><span class="p">]</span>
+
+      <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+      <span class="n">cur_year</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">year</span>
+
+      <span class="n">previous_dividend_yield</span> <span class="o">=</span> <span class="p">{}</span>
+
+      <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cur_year</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">cur_year</span><span class="p">):</span>
+          <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dividend_yield</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+              <span class="n">previous_dividend_yield</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">dividend_yield</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span>
+
+      <span class="k">return</span> <span class="n">previous_dividend_yield</span>
+  <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+      <span class="c1"># get_financial_statements('035720')
+</span>      <span class="c1"># get_3year_treasury()
+</span>      <span class="c1"># get_dividend_yield('058470')
+</span>      <span class="c1"># get_current_3year_treasury()
+</span>      <span class="c1"># estimate_dividedn_yield = get_estimated_dividend_yield('058470')
+</span>      <span class="n">estimate_dividedn_yield</span> <span class="o">=</span> <span class="n">get_previous_dividend_yield</span><span class="p">(</span><span class="s">'058470'</span><span class="p">)</span>
+      <span class="k">print</span><span class="p">(</span><span class="n">estimate_dividedn_yield</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>우선 단위기능은 잘 돌아가는것을 확인하였다. 그러나 아직까지는 감이 안잡힘.</li>
+  <li>하나하나 기능을 보면 어렵지 않음. 그러나 조합이 중요하지….</li>
+</ul>
+
+<p>5장 배당률 기반 투자 알고리즘 구현(2)</p>
+<ul>
+  <li>국채시가배당률 알고리즘 기반으로 종목 매수여부 결정하는 알고리즘 구현</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">sys</span>
+
+  <span class="kn">import</span> <span class="nn">datetime</span>
+  <span class="kn">import</span> <span class="nn">webreader</span>
+  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+  <span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="o">*</span>
+
+  <span class="c1"># code = '058470'
+</span>  <span class="c1">#
+</span>  <span class="c1"># #예상 현금배당수익률
+</span>  <span class="c1"># print(webreader.get_estimated_dividend_yield(code))
+</span>  <span class="c1">#
+</span>  <span class="c1"># #현금 배당수익률 = 주당 배당금/ 주가 *100
+</span>  <span class="c1"># print(webreader.get_dividend_yield(code))
+</span>  <span class="c1">#
+</span>  <span class="c1"># #3년 만기 국채수익률
+</span>  <span class="c1"># print(webreader.get_current_3year_treasury())
+</span>  <span class="k">class</span> <span class="nc">PyMon</span><span class="p">:</span>
+      <span class="c1"># def __init__(self):
+</span>
+      <span class="k">def</span> <span class="nf">calculate_estimated_dividend_to_treasury</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+          <span class="n">estimated_dividend_yield</span> <span class="o">=</span> <span class="n">webreader</span><span class="o">.</span><span class="n">get_estimated_dividend_yield</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+          <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">estimated_dividend_yield</span><span class="p">):</span>
+              <span class="n">estimated_dividend_yield</span> <span class="o">=</span> <span class="n">webreader</span><span class="o">.</span><span class="n">get_dividend_yield</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+          <span class="c1">#국채시가 배당률 = 현금배당수익률/ 3년 만기 국채 수익률
+</span>          <span class="n">current_3year_treasury</span> <span class="o">=</span> <span class="n">webreader</span><span class="o">.</span><span class="n">get_current_3year_treasury</span><span class="p">()</span>
+          <span class="n">estimated_dividend_to_treasury</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">estimated_dividend_yield</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">current_3year_treasury</span><span class="p">)</span>
+
+          <span class="k">return</span> <span class="n">estimated_dividend_to_treasury</span>
+
+      <span class="k">def</span> <span class="nf">get_min_max_dividend_to_treasury</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">code</span><span class="p">):</span>
+          <span class="n">previous_dividend_yield</span> <span class="o">=</span> <span class="n">webreader</span><span class="o">.</span><span class="n">get_previous_dividend_yield</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+          <span class="n">three_years_treasury</span> <span class="o">=</span> <span class="n">webreader</span><span class="o">.</span><span class="n">get_3year_treasury</span><span class="p">()</span>
+
+          <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+          <span class="n">cur_year</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">year</span>
+          <span class="n">previous_dividend_to_treasury</span> <span class="o">=</span> <span class="p">{}</span>
+
+          <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cur_year</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">cur_year</span><span class="p">):</span>
+              <span class="k">if</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">previous_dividend_yield</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">three_years_treasury</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                  <span class="n">ratio</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">previous_dividend_yield</span><span class="p">[</span><span class="n">year</span><span class="p">])</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">three_years_treasury</span><span class="p">[</span><span class="n">year</span><span class="p">])</span>
+                  <span class="n">previous_dividend_to_treasury</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">ratio</span>
+
+          <span class="k">print</span><span class="p">(</span><span class="n">previous_dividend_to_treasury</span><span class="p">)</span>
+          <span class="n">min_ratio</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">previous_dividend_to_treasury</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+          <span class="n">max_ratio</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">previous_dividend_to_treasury</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+          <span class="k">return</span> <span class="p">(</span><span class="n">min_ratio</span><span class="p">,</span> <span class="n">max_ratio</span><span class="p">)</span>
+
+      <span class="k">def</span> <span class="nf">buy_check_by_dividend_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">code</span><span class="p">):</span>
+          <span class="n">estimated_dividend_to_treasury</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_estimated_dividend_to_treasury</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+          <span class="p">(</span><span class="n">min_ratio</span><span class="p">,</span> <span class="n">max_ratio</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_min_max_dividend_to_treasury</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+          <span class="k">if</span> <span class="n">estimated_dividend_to_treasury</span> <span class="o">&gt;=</span> <span class="n">max_ratio</span><span class="p">:</span>
+              <span class="k">return</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">estimated_dividend_to_treasury</span><span class="p">)</span>
+          <span class="k">else</span><span class="p">:</span>
+              <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">estimated_dividend_to_treasury</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+      <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+      <span class="n">pymon</span> <span class="o">=</span> <span class="n">PyMon</span><span class="p">()</span>
+      <span class="c1">#pymon.run()
+</span>      <span class="k">print</span><span class="p">(</span><span class="n">pymon</span><span class="o">.</span><span class="n">calculate_estimated_dividend_to_treasury</span><span class="p">(</span><span class="s">'058470'</span><span class="p">))</span>
+      <span class="k">print</span><span class="p">(</span><span class="n">pymon</span><span class="o">.</span><span class="n">get_min_max_dividend_to_treasury</span><span class="p">(</span><span class="s">'058470'</span><span class="p">))</span>
+      <span class="k">print</span><span class="p">(</span><span class="n">pymon</span><span class="o">.</span><span class="n">buy_check_by_dividend_algorithm</span><span class="p">(</span><span class="s">'058470'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>6장 배당률 기반 투자 알고리즘 구현(3)</p>
+<ul>
+  <li>난 키움을 사용하지 않으므로 약간의 수정을 가해야 예제를 할 수 있었다.</li>
+  <li>그러나 예제가 제대로 동작하지 않아서 고생을 좀 했다.</li>
+  <li>예제를 하다보면 튜플,딕셔너리,리스트 헷갈리는데 <a href="https://hashcode.co.kr/questions/4118/의-차이와-사용해야-할-곳">링크</a></li>
+  <li>링크 참조하자.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">get_kospi200</span><span class="p">():</span>
+
+      <span class="n">BaseUrl</span> <span class="o">=</span> <span class="s">'http://finance.naver.com/sise/entryJongmok.nhn?&amp;page='</span>
+
+      <span class="n">kospi_code</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="n">kospi_name</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+          <span class="n">url</span> <span class="o">=</span> <span class="n">BaseUrl</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+          <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+          <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">,</span><span class="s">'lxml'</span><span class="p">)</span>
+          <span class="n">items</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'td'</span><span class="p">,{</span><span class="s">'class'</span><span class="p">:</span><span class="s">'ctg'</span><span class="p">})</span>
+
+          <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+              <span class="c1"># print(item)
+</span>              <span class="c1"># print(item.a)
+</span>              <span class="n">txt</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'href'</span><span class="p">)</span>
+              <span class="c1"># print(txt)
+</span>              <span class="n">k</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'[</span><span class="err">\</span><span class="s">d]+'</span><span class="p">,</span> <span class="n">txt</span><span class="p">)</span>
+              <span class="c1"># print(re.search('[\d]', txt))
+</span>              <span class="c1"># print(re.search('[\d]+', txt))
+</span>              <span class="k">if</span> <span class="n">k</span><span class="p">:</span>
+                  <span class="n">code</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+                  <span class="n">name</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">text</span>
+                  <span class="n">kospi_code</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+                  <span class="n">kospi_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+
+      <span class="n">kospi200</span> <span class="o">=</span> <span class="n">Series</span><span class="p">(</span><span class="n">kospi_code</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">kospi_name</span><span class="p">)</span>
+
+      <span class="k">return</span> <span class="n">kospi200</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">sys</span>
+
+  <span class="kn">import</span> <span class="nn">datetime</span>
+  <span class="kn">import</span> <span class="nn">webreader</span>
+  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+  <span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="o">*</span>
+  <span class="kn">import</span> <span class="nn">extract_kospi200</span>
+  <span class="kn">import</span> <span class="nn">time</span>
+
+  <span class="c1"># #예상 현금배당수익률
+</span>  <span class="c1"># print(webreader.get_estimated_dividend_yield(code))
+</span>  <span class="c1">#
+</span>  <span class="c1"># #현금 배당수익률
+</span>  <span class="c1"># print(webreader.get_dividend_yield(code))
+</span>  <span class="c1">#
+</span>  <span class="c1"># #3년 만기 국채수익률
+</span>  <span class="c1"># print(webreader.get_current_3year_treasury())
+</span>  <span class="k">class</span> <span class="nc">PyMon</span><span class="p">:</span>
+      <span class="c1"># def __init__(self):
+</span>
+      <span class="k">def</span> <span class="nf">calculate_estimated_dividend_to_treasury</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+          <span class="n">estimated_dividend_yield</span> <span class="o">=</span> <span class="n">webreader</span><span class="o">.</span><span class="n">get_estimated_dividend_yield</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+          <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">estimated_dividend_yield</span><span class="p">):</span>
+              <span class="n">estimated_dividend_yield</span> <span class="o">=</span> <span class="n">webreader</span><span class="o">.</span><span class="n">get_dividend_yield</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+              <span class="k">if</span> <span class="n">estimated_dividend_yield</span> <span class="o">==</span> <span class="s">""</span><span class="p">:</span>
+                  <span class="n">estimated_dividend_yield</span> <span class="o">=</span> <span class="mi">0</span>
+
+          <span class="c1">#국채시가 배당률 = 현금배당수익률/ 3년 만기 국채 수익률
+</span>          <span class="n">current_3year_treasury</span> <span class="o">=</span> <span class="n">webreader</span><span class="o">.</span><span class="n">get_current_3year_treasury</span><span class="p">()</span>
+          <span class="n">estimated_dividend_to_treasury</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">estimated_dividend_yield</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">current_3year_treasury</span><span class="p">)</span>
+
+          <span class="k">return</span> <span class="n">estimated_dividend_to_treasury</span>
+
+      <span class="k">def</span> <span class="nf">get_min_max_dividend_to_treasury</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">code</span><span class="p">):</span>
+          <span class="n">previous_dividend_yield</span> <span class="o">=</span> <span class="n">webreader</span><span class="o">.</span><span class="n">get_previous_dividend_yield</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+          <span class="n">three_years_treasury</span> <span class="o">=</span> <span class="n">webreader</span><span class="o">.</span><span class="n">get_3year_treasury</span><span class="p">()</span>
+
+          <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+          <span class="n">cur_year</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">year</span>
+          <span class="n">previous_dividend_to_treasury</span> <span class="o">=</span> <span class="p">{}</span>
+
+          <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cur_year</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">cur_year</span><span class="p">):</span>
+              <span class="k">if</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">previous_dividend_yield</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">three_years_treasury</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                  <span class="n">ratio</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">previous_dividend_yield</span><span class="p">[</span><span class="n">year</span><span class="p">])</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">three_years_treasury</span><span class="p">[</span><span class="n">year</span><span class="p">])</span>
+                  <span class="n">previous_dividend_to_treasury</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">ratio</span>
+
+          <span class="c1"># print(previous_dividend_to_treasury)
+</span>          <span class="k">if</span> <span class="n">previous_dividend_to_treasury</span> <span class="o">==</span> <span class="p">{}:</span>
+              <span class="n">min_ratio</span> <span class="o">=</span> <span class="mi">0</span>
+              <span class="n">max_ratio</span> <span class="o">=</span> <span class="mi">0</span>
+          <span class="k">else</span><span class="p">:</span>
+              <span class="n">min_ratio</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">previous_dividend_to_treasury</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+              <span class="n">max_ratio</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">previous_dividend_to_treasury</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+          <span class="k">return</span> <span class="p">(</span><span class="n">min_ratio</span><span class="p">,</span> <span class="n">max_ratio</span><span class="p">)</span>
+
+      <span class="k">def</span> <span class="nf">buy_check_by_dividend_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">code</span><span class="p">):</span>
+          <span class="n">estimated_dividend_to_treasury</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_estimated_dividend_to_treasury</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+          <span class="p">(</span><span class="n">min_ratio</span><span class="p">,</span> <span class="n">max_ratio</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_min_max_dividend_to_treasury</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+          <span class="k">if</span> <span class="n">estimated_dividend_to_treasury</span> <span class="o">&gt;=</span> <span class="n">max_ratio</span> <span class="ow">and</span> <span class="n">max_ratio</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+              <span class="k">return</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">estimated_dividend_to_treasury</span><span class="p">)</span>
+          <span class="k">else</span><span class="p">:</span>
+              <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">estimated_dividend_to_treasury</span><span class="p">)</span>
+
+      <span class="k">def</span> <span class="nf">run_dividend</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+          <span class="n">buy_list</span> <span class="o">=</span> <span class="p">[]</span>
+          <span class="n">kospi_codes</span> <span class="o">=</span> <span class="n">extract_kospi200</span><span class="o">.</span><span class="n">get_kospi200</span><span class="p">()</span>
+          <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+          <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">kospi_codes</span><span class="p">:</span>
+              <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+              <span class="k">print</span><span class="p">(</span><span class="s">'check: '</span><span class="p">,</span> <span class="n">kospi_codes</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+              <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buy_check_by_dividend_algorithm</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+              <span class="k">if</span> <span class="n">ret</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                  <span class="k">print</span><span class="p">(</span><span class="s">"Pass"</span><span class="p">,</span><span class="n">ret</span><span class="p">)</span>
+                  <span class="n">buy_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">kospi_codes</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">code</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+              <span class="k">else</span><span class="p">:</span>
+                  <span class="k">print</span><span class="p">(</span><span class="s">"Fail"</span><span class="p">,</span><span class="n">ret</span><span class="p">)</span>
+                  <span class="c1"># buy_list.append((kospi_codes.index[i], ret[1]))
+</span>
+              <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+          <span class="c1"># print(kospi_codes.index)
+</span>          <span class="c1"># print(kospi_codes.values)
+</span>
+          <span class="n">sorted_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">buy_list</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span> <span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+          <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+              <span class="k">print</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+          <span class="bp">self</span><span class="o">.</span><span class="n">update_buy_list</span><span class="p">(</span><span class="n">buy_list</span><span class="p">)</span>
+
+      <span class="k">def</span> <span class="nf">update_buy_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buy_list</span><span class="p">):</span>
+          <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"buy_list.txt"</span><span class="p">,</span> <span class="s">"wt"</span><span class="p">)</span>
+          <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">buy_list</span><span class="p">:</span>
+              <span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="s">"회사명;</span><span class="si">%</span><span class="s">s; 코드;</span><span class="si">%</span><span class="s">r;국채시가 배당률;</span><span class="si">%</span><span class="s">r </span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">code</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">code</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+          <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+  <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+      <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+      <span class="n">pymon</span> <span class="o">=</span> <span class="n">PyMon</span><span class="p">()</span>
+      <span class="n">pymon</span><span class="o">.</span><span class="n">run_dividend</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1"># 결과 2018/05/26 기준
+</span>  <span class="err">회사명</span><span class="p">;</span><span class="err">삼성전자</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'005930'</span><span class="p">;</span><span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">1.2318181818181817</span>
+  <span class="err">회사명</span><span class="p">;</span><span class="err">삼성생명</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'032830'</span><span class="p">;</span><span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">1.0181818181818183</span>
+  <span class="err">회사명</span><span class="p">;</span><span class="err">롯데케미칼</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'011170'</span><span class="p">;</span><span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">1.5545454545454545</span>
+  <span class="err">회사명</span><span class="p">;</span><span class="err">삼성화재</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'000810'</span><span class="p">;</span><span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">1.9045454545454545</span>
+  <span class="err">회사명</span><span class="p">;</span><span class="err">고려아연</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'010130'</span><span class="p">;</span><span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">1.1272727272727272</span>
+  <span class="err">회사명</span><span class="p">;</span><span class="n">KT</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'030200'</span><span class="p">;</span><span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">1.8136363636363635</span>
+  <span class="err">회사명</span><span class="p">;</span><span class="err">롯데쇼핑</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'023530'</span><span class="p">;</span><span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">1.0</span>
+  <span class="err">회사명</span><span class="p">;</span><span class="err">한온시스템</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'018880'</span><span class="p">;</span><span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">1.4863636363636363</span>
+  <span class="err">회사명</span><span class="p">;</span><span class="err">한국가스공사</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'036460'</span><span class="p">;</span><span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">1.0363636363636362</span>
+  <span class="err">회사명</span><span class="p">;</span><span class="n">DB</span><span class="err">손해보험</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'005830'</span><span class="p">;</span><span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">1.75</span>
+</code></pre></div></div>
+
+<ul>
+  <li><a href="https://wikidocs.net/6665">배당률기반 투자 알고리즘 구현</a></li>
+  <li>예제 학습이 끝났다 키움을 사용하지 않아서 약간 수정해서 비슷하게 구현했다.</li>
+  <li>pycharm을 통해서 python, pyqt공부하려고 했는데 여기까지 왔다.</li>
+  <li>아직 초보자라 잘모르지만 재미있는 학습이었다.</li>
+</ul>
+
+<p>7장 <a href="https://wikidocs.net/6657">급등주 포착 알고리즘</a></p>
+<ul>
+  <li>약간의 수정을 통해서 비슷하게 구현할 수 있을 것같다.</li>
+  <li>내가 코스피 200에 해당하는것만 가지고 있으므로 이 정보를 이용해서 급등주 검색 알고리즘을 구현해봤다.</li>
+  <li>위에서 구한 국채시가 배당률을 이용하고 급등주 포착 알고리즘을 이용해서 만들어 봤다.</li>
+  <li>목표 : 우선 급등주를 고른 후 국채시가 배당률이 높은 순으로 정렬한다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">pandas_datareader.data</span> <span class="k">as</span> <span class="n">web</span>
+  <span class="kn">import</span> <span class="nn">fix_yahoo_finance</span> <span class="k">as</span> <span class="n">yf</span>
+  <span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="o">*</span>
+  <span class="kn">import</span> <span class="nn">sys</span>
+  <span class="kn">import</span> <span class="nn">extract_kospi200</span>
+  <span class="n">yf</span><span class="o">.</span><span class="n">pdr_override</span><span class="p">()</span>
+  <span class="kn">import</span> <span class="nn">time</span>
+  <span class="kn">import</span> <span class="nn">pymon_sub</span>
+
+
+
+  <span class="k">class</span> <span class="nc">PyMon</span><span class="p">:</span>
+      <span class="k">def</span> <span class="nf">get_ohlcv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+          <span class="n">df</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">get_data_yahoo</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+          <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+          <span class="k">return</span> <span class="n">df</span>
+
+      <span class="k">def</span> <span class="nf">check_speedy_rising_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span> <span class="p">):</span>
+          <span class="n">result</span> <span class="o">=</span> <span class="bp">False</span>
+          <span class="c1"># start_date = '1996-05-06'
+</span>          <span class="n">start_date</span> <span class="o">=</span> <span class="s">'2018-01-01'</span>
+          <span class="n">window_span</span> <span class="o">=</span> <span class="mi">20</span>
+
+          <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ohlcv</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">start_date</span><span class="p">)</span>
+          <span class="n">volumes</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'Volume'</span><span class="p">]</span>
+          <span class="n">adj_close</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'Adj Close'</span><span class="p">]</span>
+
+          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">volumes</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">window_span</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
+              <span class="n">result</span> <span class="o">=</span> <span class="bp">False</span>
+          <span class="k">else</span><span class="p">:</span>
+              <span class="n">sum_vol</span> <span class="o">=</span> <span class="mi">0</span>
+              <span class="n">today_vol</span> <span class="o">=</span> <span class="mi">0</span>
+              <span class="n">today_cost</span> <span class="o">=</span> <span class="mi">0</span>
+              <span class="n">sum_cost</span> <span class="o">=</span> <span class="mi">0</span>
+
+              <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">volumes</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">window_span</span><span class="p">,</span> <span class="n">volumes</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
+                  <span class="n">vol</span> <span class="o">=</span> <span class="n">volumes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                  <span class="n">cost</span> <span class="o">=</span> <span class="n">adj_close</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                  <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">volumes</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                      <span class="n">today_vol</span> <span class="o">=</span> <span class="n">vol</span>
+                      <span class="n">today_cost</span> <span class="o">=</span> <span class="n">cost</span>
+                  <span class="k">elif</span> <span class="n">volumes</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">window_span</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">volumes</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                      <span class="n">sum_vol</span> <span class="o">+=</span> <span class="n">vol</span>
+                      <span class="n">sum_cost</span> <span class="o">+=</span> <span class="n">cost</span>
+                  <span class="k">else</span><span class="p">:</span>
+                      <span class="k">break</span>
+
+              <span class="n">avg_vol</span> <span class="o">=</span> <span class="n">sum_vol</span> <span class="o">/</span> <span class="n">window_span</span>
+              <span class="n">avg_cost</span> <span class="o">=</span> <span class="n">sum_cost</span> <span class="o">/</span> <span class="n">window_span</span>
+              <span class="k">print</span><span class="p">(</span><span class="n">avg_vol</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">today_vol</span><span class="p">)</span>
+              <span class="k">if</span> <span class="n">today_vol</span> <span class="o">&gt;</span> <span class="n">avg_vol</span> <span class="o">*</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">today_cost</span> <span class="o">&gt;</span> <span class="n">avg_cost</span><span class="p">:</span>
+                  <span class="n">result</span> <span class="o">=</span> <span class="bp">True</span>
+
+          <span class="k">return</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">today_vol</span><span class="p">,</span> <span class="n">avg_vol</span><span class="p">,</span> <span class="n">today_cost</span><span class="p">,</span> <span class="n">avg_cost</span><span class="p">)</span>
+
+      <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+           <span class="n">buy_list</span> <span class="o">=</span> <span class="p">[]</span>
+           <span class="n">kospi_codes</span> <span class="o">=</span> <span class="n">extract_kospi200</span><span class="o">.</span><span class="n">get_kospi200</span><span class="p">()</span>
+           <span class="n">num</span> <span class="o">=</span> <span class="n">kospi_codes</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+           <span class="c1">#print(num)
+</span>           <span class="c1"># for code in kospi_codes:
+</span>           <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+           <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">kospi_codes</span><span class="p">:</span>
+              <span class="n">code_ks</span> <span class="o">=</span> <span class="n">code</span> <span class="o">+</span> <span class="s">'.KS'</span>
+              <span class="k">print</span><span class="p">(</span><span class="n">code_ks</span><span class="p">)</span>
+              <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s">'/'</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+              <span class="c1"># 국채시가 배당률 = 현금배당수익률/ 3년 만기 국채 수익률
+</span>              <span class="c1"># 5년간 국채 시가 배당률 중 높은 거보다 더 좋은 경우만 true
+</span>              <span class="n">ret</span> <span class="o">=</span> <span class="n">pymon_sub</span><span class="o">.</span><span class="n">buy_check_by_dividend_algorithm</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+              <span class="c1"># 급중주 : 기준 현 주가가 20일 평균 주가보다 높고 거래량은 20일 평균 거래량의 2배보다 클때
+</span>              <span class="n">en_add</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_speedy_rising_volume</span><span class="p">(</span><span class="n">code_ks</span><span class="p">)</span>
+              <span class="k">if</span> <span class="n">en_add</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                  <span class="n">buy_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">kospi_codes</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">code_ks</span> <span class="p">,</span> <span class="n">en_add</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">en_add</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">en_add</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">en_add</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">ret</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+              <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+
+           <span class="bp">self</span><span class="o">.</span><span class="n">update_buy_list</span><span class="p">(</span><span class="n">buy_list</span><span class="p">)</span>
+
+      <span class="k">def</span> <span class="nf">update_buy_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buy_list</span><span class="p">):</span>
+          <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"buy_list_add.txt"</span><span class="p">,</span> <span class="s">"wt"</span><span class="p">)</span>
+          <span class="n">sorted_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">buy_list</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+          <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">sorted_list</span><span class="p">:</span>
+              <span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="s">"회사명;</span><span class="si">%</span><span class="s">s; 코드;</span><span class="si">%</span><span class="s">r;오늘거래량;</span><span class="si">%</span><span class="s">r 20일평균 거래량;</span><span class="si">%</span><span class="s">r 비율;</span><span class="si">%</span><span class="s">r 오늘종가;</span><span class="si">%</span><span class="s">r 20일평균 종가;</span><span class="si">%</span><span class="s">r 국채시가 배당률;</span><span class="si">%</span><span class="s">r</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">code</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">code</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">code</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">code</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">code</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">code</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">code</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">code</span><span class="p">[</span><span class="mi">6</span><span class="p">]))</span>
+          <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+  <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+      <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+      <span class="n">pymon</span> <span class="o">=</span> <span class="n">PyMon</span><span class="p">()</span>
+      <span class="n">pymon</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+      <span class="c1"># 출력
+</span>      <span class="err">회사명</span><span class="p">;</span><span class="err">쌍용양회</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'003410.KS'</span><span class="p">;</span><span class="err">오늘거래량</span><span class="p">;</span><span class="mi">2297866</span> <span class="mi">20</span><span class="err">일평균</span> <span class="err">거래량</span><span class="p">;</span><span class="mf">1042480.5</span> <span class="err">비율</span><span class="p">;</span><span class="mf">2.204229239779545</span> <span class="err">오늘종가</span><span class="p">;</span><span class="mf">38600.0</span> <span class="mi">20</span><span class="err">일평균</span> <span class="err">종가</span><span class="p">;</span><span class="mf">31895.0</span> <span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">2.1628959276018103</span>
+      <span class="err">회사명</span><span class="p">;</span><span class="err">효성</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'004800.KS'</span><span class="p">;</span><span class="err">오늘거래량</span><span class="p">;</span><span class="mi">543691</span> <span class="mi">20</span><span class="err">일평균</span> <span class="err">거래량</span><span class="p">;</span><span class="mf">188168.2</span> <span class="err">비율</span><span class="p">;</span><span class="mf">2.8893883238506826</span> <span class="err">오늘종가</span><span class="p">;</span><span class="mf">138500.0</span> <span class="mi">20</span><span class="err">일평균</span> <span class="err">종가</span><span class="p">;</span><span class="mf">132925.0</span> <span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">1.8642533936651584</span>
+      <span class="err">회사명</span><span class="p">;</span><span class="err">동양</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'001520.KS'</span><span class="p">;</span><span class="err">오늘거래량</span><span class="p">;</span><span class="mi">3165234</span> <span class="mi">20</span><span class="err">일평균</span> <span class="err">거래량</span><span class="p">;</span><span class="mf">1167315.45</span> <span class="err">비율</span><span class="p">;</span><span class="mf">2.711549821430017</span> <span class="err">오늘종가</span><span class="p">;</span><span class="mf">2275.0</span> <span class="mi">20</span><span class="err">일평균</span> <span class="err">종가</span><span class="p">;</span><span class="mf">2132.5</span> <span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">1.1402714932126696</span>
+      <span class="err">회사명</span><span class="p">;</span><span class="err">현대제철</span><span class="p">;</span> <span class="err">코드</span><span class="p">;</span><span class="s">'004020.KS'</span><span class="p">;</span><span class="err">오늘거래량</span><span class="p">;</span><span class="mi">6637458</span> <span class="mi">20</span><span class="err">일평균</span> <span class="err">거래량</span><span class="p">;</span><span class="mf">1210368.1</span> <span class="err">비율</span><span class="p">;</span><span class="mf">5.483834215392821</span> <span class="err">오늘종가</span><span class="p">;</span><span class="mf">67200.0</span> <span class="mi">20</span><span class="err">일평균</span> <span class="err">종가</span><span class="p">;</span><span class="mf">61685.0</span> <span class="err">국채시가</span> <span class="err">배당률</span><span class="p">;</span><span class="mf">0.579185520361991</span>
+</code></pre></div></div>
+
+<ul>
+  <li>이번 강좌를 통해서 pycharm, python, pyqt and crawling에대해서 익숙해지는 계기가 된것 같다.</li>
+  <li>앞으로 가야할 길이 멀지 눈을 떴으므로 뭘 볼지를 결정하자!!</li>
+  <li>run() –&gt; buy_check_by_dividend_algorithm() : 국채시가 배당률</li>
+  <li>buy_check_by_dividend_algorithm() –&gt; calculate_estimated_dividend_to_treasury() : 현재 국채시가 배당률</li>
+  <li>buy_check_by_dividend_algorithm() –&gt; get_min_max_dividend_to_treasury() : 5년가 국채 시가 배당률</li>
+  <li>calculate_estimated_dividend_to_treasury() –&gt; get_estimated_dividend_yield : 현금 배당 수익률</li>
+  <li>calculate_estimated_dividend_to_treasury() –&gt; get_dividend_yield : 최근 결산 수정 DPS(현금)/전일자 보통주 수정주가로 대체</li>
+  <li>calculate_estimated_dividend_to_treasury() –&gt; get_current_3year_treasury : 3년 만기 국채 수익률</li>
+  <li>get_min_max_dividend_to_treasury() –&gt; get_previous_dividend_yield() : 5년간 현금 배당 수익률</li>
+  <li>get_min_max_dividend_to_treasury() –&gt; get_3year_treasury() : 5년간 3년 만기 국채 수익</li>
+  <li>run() –&gt; check_speedy_rising_volume(): sub함수 없음.</li>
+  <li>나도 이것을 정리하면서 주식에대해서도 이해를 하고 python에대해서도 정리하고 좋은 강의이다.</li>
+  <li>강사분께 다시한번 감사드립니다.</li>
+  <li>강의 명 : 파이썬으로 배우는 알고리즘 트레이딩</li>
+  <li>지은이 : 조대표 외 1명</li>
+  <li>참고 주소 : <a href="https://wikidocs.net/6665">링크</a></li>
+</ul>
+:ET

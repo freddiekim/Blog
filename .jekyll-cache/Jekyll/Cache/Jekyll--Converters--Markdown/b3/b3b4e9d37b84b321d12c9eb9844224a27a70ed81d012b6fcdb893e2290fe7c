@@ -1,0 +1,124 @@
+I"�<h4 id="time--2019-06-09">Time : 2019-06-09</h4>
+<h4 id="title--hello-cuda">Title : hello cuda</h4>
+
+<h4 id="reference">reference</h4>
+
+<p>참조한 사이트 정리.</p>
+
+<p>cuda 기초 <br />
+– <a href="http://haanjack.github.io/cuda/2016/03/27/cuda-prog-model.html">CUDA 프로그래밍 모델</a></p>
+
+<p>– <a href="https://github.com/dedoogong/cuda">CUDA 예제</a></p>
+
+<hr />
+<h4 id="what-i-understood">what I understood</h4>
+<p>내가 이해한 내용 정리. 위 사이트가 진짜 사이트이고 난 내가 이해한거와 추가로 필요한 정보를 적어 놓으려고한다.</p>
+
+<p>아래 처럼 hello.cu를 작성하고 빌드를하면</p>
+
+<p>hello.cu</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include "../common/common.h"
+#include &lt;stdio.h&gt;
+
+__global__ void helloOnGPU()
+{
+    printf("Hello World on GPU!\n");
+    printf("threadIdx:(%d, %d, %d)\n", threadIdx.x, gridDim.x, blockIdx.x);
+}
+
+int main(int argc, char **argv)
+{
+    printf("Hello World on CPU!\n");
+
+    int numBlocks = 1;
+    dim3 threadsPerBlock(10);
+
+    helloOnGPU&lt;&lt;&lt;numBlocks, threadsPerBlock&gt;&gt;&gt;();
+    CHECK(cudaDeviceReset());
+    return 0;
+}
+</code></pre></div></div>
+
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello World on CPU!
+Hello World on GPU!
+Hello World on GPU!
+Hello World on GPU!
+Hello World on GPU!
+Hello World on GPU!
+Hello World on GPU!
+Hello World on GPU!
+Hello World on GPU!
+Hello World on GPU!
+Hello World on GPU!
+threadIdx:(0, 1, 0)
+threadIdx:(1, 1, 0)
+threadIdx:(2, 1, 0)
+threadIdx:(3, 1, 0)
+threadIdx:(4, 1, 0)
+threadIdx:(5, 1, 0)
+threadIdx:(6, 1, 0)
+threadIdx:(7, 1, 0)
+threadIdx:(8, 1, 0)
+threadIdx:(9, 1, 0)
+</code></pre></div></div>
+<p>즉 thread만 생성되고 block은 고정이다. 내가 위해서 block당 thread를 10개로 설정했기 때문이다. <br />
+그리고 grid의 개수를 1개로 설정했기 때문이다. 기본적으로 grid의 개수는 1차원인 경우</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grid_nx = (nx + block.x - 1) / block.x;
+grid_ny = (ny + block.y - 1) / block.y;
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   키워드         	의미  
+__global__      CPU Main thread에서 호출 가능한 GPU에서 동작하는 함수 
+__host__        CPU Thread에서만 동작하는 함수 
+__device__      GPU 커널함수 내부에서만 호출 가능한 GPU 함수 
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Pre-defined      variables
+dim3 gridDim     dimensions of grid
+dim3  blockDim   dimensions of block
+uint3 blockIdx   block index within grid
+uint3 threadIdx  thread index within block
+int   warpSize   number of threads in warp
+</code></pre></div></div>
+
+<p>인덱싱 방법</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>인덱싱 종류                  코드
+1차원 데이터(x only)       blockDim.x * blockIdx.x + threadIdx.x
+2차원 데이터(x, y)         blockDim.x * blockIdx.x + threadIdx.x, blockDim.y * blockIdx.y + threadIdx.y
+2차원 데이터(x only)       N.x * blockDim.y * blockIdx.y + N.x * threadIdx.y + blockDim.x * blockIdx.x + blockIdx.x
+</code></pre></div></div>
+
+<h4 id="그래픽-카드-정보-얻어오기">그래픽 카드 정보 얻어오기</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cudaDeviceProp deviceProp;
+CHECK(cudaGetDeviceProperties(&amp;deviceProp, dev));
+printf("Using Device %d: %s\n", dev, deviceProp.name);
+CHECK(cudaSetDevice(dev));
+</code></pre></div></div>
+
+<p>그래픽 카드가 여러개일때 필요하지 않을까???? 암튼 위 처럼 코드를 작성하면 내 그래픽 정보가 나온다.</p>
+
+<p>그리고 위 사이트에서는 일반적으로 최적사이즈 블락은 <strong>Block(16, 16)</strong> 이라고한다. 참고하자!</p>
+
+<h4 id="memory-계층">Memory 계층</h4>
+
+<p>CUDA에서 사용하는 메모리 계층은 크게 두 가지로 구별 할 수 있습니다.</p>
+
+<p>1) Global Memory</p>
+<ul>
+  <li>그래픽 카드에 설치되는 메모리. 1G이상. 다른 메모리에 비해 느리다. 물론 CPU에서 사용하는 메모리보다는 빠르다. 대역폭에 신경을 써야 한다.
+2) On-Chip memory</li>
+  <li>Shared L2 Cache: CUDA Core간 공유하는 Cache 메모리. 프로그래밍에 노출되지 않음.</li>
+  <li>Shared L1 Cache: CUDA Core 내에서 사용하는 L1 Cache. (약 64KB. 코어 버전마다 다름). <strong>프로그래밍 가능</strong></li>
+  <li>Texture Memory: CUDA Core가 공유하는 Pre-fetch를 지원하는 read-only cache. <strong>프로그래밍 가능</strong>.</li>
+  <li>Constant Memory: CUDA Core가 공유하는 Kernel 실행중 업데이트가 불가능한 read-only cache. <strong>프로그래밍 가능</strong>.</li>
+  <li>Register File: CUDA Thread가 사용하는 Register</li>
+</ul>
+
+<p>위 메모리를 이해하는것이 cuda 최적화하는 방법이라고함. 난 우선 작성이나 해보자!!! \</p>
+<blockquote>
+  <p>이 부분을 잘 이해하는 것이 CUDA 프로그래밍을 최적화 시켜나가는데 중요한 부분이라고 할 수 있습니다.</p>
+</blockquote>
+:ET

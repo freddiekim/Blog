@@ -1,0 +1,12 @@
+I"<h3 id="준비물">준비물</h3>
+
+<ul>
+  <li>emac 사용법</li>
+  <li>homebrew</li>
+</ul>
+
+<h3 id="설치방법">설치방법</h3>
+<ul>
+  <li>목적 : 기존에 mac에는 python2가 깔려있는데 homebrew를 사용해서 2가지 버전이 다 돌아가도록 한다.</li>
+</ul>
+:ET

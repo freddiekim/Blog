@@ -1,0 +1,20 @@
+I"�<h4 id="time--2018-09-16">Time : 2018-09-16</h4>
+<h4 id="title--eclipse">Title : eclipse</h4>
+
+<p>cmake를 eclipse에서 사용하기</p>
+<ul>
+  <li><a href="https://gitlab.kitware.com/cmake/community/wikis/doc/editors/Eclipse-UNIX-Tutorial"></a></li>
+</ul>
+
+<p>https://www.youtube.com/watch?v=Q6WdpSh8s80</p>
+
+<p>https://stackoverflow.com/questions/49001329/gdb-doesnt-work-on-macos-high-sierra-10-13-3/49104154#49104154</p>
+
+<p>LLVM ?</p>
+<ul>
+  <li>C/C++ complier toolset이라고 한다. 그리고 디버거는 LLDB를 사용한다. 지금 난 gcc 와 gdb를 사용하고 있는데 여러가지 불편한 점이
+많다. <a href="https://linuxhint.com/install-llvm-ubuntu/">링크</a></li>
+</ul>
+
+<p>맥에서는 잘 되지 않는다.</p>
+:ET
