@@ -3,7 +3,7 @@
 layout: post
 title: "the first thing i did after i format on my computer"
 categories: Archives
-tags: [documentation,git,reset]
+tags: [documentation,git]
 image:
  feature:
  teaser:

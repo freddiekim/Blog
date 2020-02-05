@@ -3,7 +3,7 @@
 layout: post
 title: "GOF Design Patter"
 categories: Archives
-tags: [documentation,git,GOF]
+tags: [documentation,GOF]
 image:
  feature:
  teaser:
