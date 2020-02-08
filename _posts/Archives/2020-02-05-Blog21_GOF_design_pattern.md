@@ -13,12 +13,12 @@ image:
 ---
 
 #### Time : 2020-02-05
-#### Title : GOF Design Patter Basic
+#### Title : GOF Design Pattern Basic
 
 #### reference
 
-1. [GOF 디자인 패턴](http://iilii.egloos.com/tag/디자인패턴) \\
-2. [클린코드 & 디자인 패턴](https://hyesun03.github.io/archive/) \\
+1. [GOF 디자인 패턴](http://iilii.egloos.com/tag/디자인패턴)
+2. [클린코드 & 디자인 패턴](https://hyesun03.github.io/archive/)
 
 ***
 #### GOF design pattern 기초
