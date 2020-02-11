@@ -24,20 +24,20 @@ image:
 #### GOF design pattern 기초
 어려워서 공부를 못했는데 쉽게 적어 놓은 사이트를 알게 되어서 위 참고 자료를 보고 공부해야겠다.
 
-1. Observer pattern
-[참조1](http://iilii.egloos.com/m/3902774)
-[참조2](https://flowarc.tistory.com/entry/디자인-패턴-옵저버-패턴Observer-Pattern?category=562154)
-[참조3](https://docs.microsoft.com/ko-kr/dotnet/standard/events/observer-design-pattern#applying-the-pattern)
-난이도 순이다. 참조하자!
-참조 1을 구현해보자!.
+1. Observer Pattern \\
+[참조1](http://iilii.egloos.com/m/3902774) \\
+[참조2](https://flowarc.tistory.com/entry/디자인-패턴-옵저버-패턴Observer-Pattern?category=562154) \\
+[참조3](https://docs.microsoft.com/ko-kr/dotnet/standard/events/observer-design-pattern#applying-the-pattern) \\
+난이도 순이다. 참조하자! \\
+참조 1을 구현해보자!. 
 
-옵저버 패턴은 
--- 어떤 클래스에 변화가 일어 났을 때 다른 클래스에 통보를 해주는 패턴 임.
--- 보통 어떤 클래스를 Observable이라고 함 주체 객체를 의미함.
--- 통보를 받는 클래스를 Observer라고 함 관찰 객체를 의미함.
--- 주체 객체와 관찰 객체는 1:1 관계를 가질 수 있지만 보통 1 : N 관계를 가짐.
+옵저버 패턴은 \\
+-- 어떤 클래스에 변화가 일어 났을 때 다른 클래스에 통보를 해주는 패턴 임. \\
+-- 보통 어떤 클래스를 Observable이라고 함 주체 객체를 의미함. \\
+-- 통보를 받는 클래스를 Observer라고 함 관찰 객체를 의미함. \\
+-- 주체 객체와 관찰 객체는 1:1 관계를 가질 수 있지만 보통 1 : N 관계를 가짐. 
 
-위 예제를 응용해서 C# 버전으로 만들어 봤다. 나중에 git에 정리해서 올리겠다.
+위 예제를 응용해서 C# 버전으로 만들어 봤다. 나중에 git에 정리해서 올리겠다. \\
 구독자가 해지가능하도록 만들었다.
 
 ~~~
@@ -54,11 +54,11 @@ image:
 
             newsMachine.delete(person1);
 
-            newsMachine.setNewsInfo("벛꽃 축제합니다", "다같이 벚꽃보러~");
+            newsMachine.setNewsInfo("밤꽃 축제", "3월 ~ 4월");
 
             person1.withraw();
 
-            newsMachine.setNewsInfo("다시 전달 : 벛꽃 축제합니다", "다같이 벚꽃보러~");
+            newsMachine.setNewsInfo("다시 전달 : 밤꽃 축제", "3월 ~ 4월");
 ~~~
 
 ~~~
@@ -152,9 +152,9 @@ image:
 
         public void display(string title, string news)
         {
-            string newsString = title + " \n -------- \n " + news + "\n";
+            string newsString = "title : " + title + "\n -------- \n" + news + "\n";
 
-            Console.WriteLine("구독자 : {0} \n\n오늘의 뉴스\n============================\n\n{1}" , obj, newsString);
+            Console.WriteLine("구독자 : {0} \n\n<< 오늘의 뉴스 >> \n {1}" , obj, newsString);
 
         }
 
@@ -177,3 +177,8 @@ image:
         void update(IObservable o, Object arg);
     }
 ~~~
+
+2. Iterator Pattern \\
+[참조1](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/concepts/iterators) \\
+[참조2](http://iilii.egloos.com/3788564)\\
+
