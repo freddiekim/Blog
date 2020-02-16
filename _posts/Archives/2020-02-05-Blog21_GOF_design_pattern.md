@@ -1,7 +1,7 @@
 ---
 
 layout: post
-title: "GOF Design Pattern"
+title: "GOF Design Pattern-Observer"
 categories: Archives
 tags: [documentation,GOF]
 image:
@@ -178,7 +178,4 @@ image:
     }
 ~~~
 
-2. Iterator Pattern \\
-[참조1](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/concepts/iterators) \\
-[참조2](http://iilii.egloos.com/3788564)\\
 
