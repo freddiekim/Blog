@@ -27,17 +27,17 @@ image:
 
 위 참조 사이트를 참조해서 작성했습니다. 
 
-1. Iterator Pattern \\
+1. Iterator Pattern 
 
 Array나 List를 사용할 때 데이터의 집합체 임. \\
-Iterator를 사용하면 데이터와 집합체간에 분리 시켜서 생각할 수 있음. \\
+Iterator를 사용하면 데이터와 집합체간에 분리 시켜서 생각할 수 있음. 
 
 구현 방법에는 여러가지가 있지만 가장 대중 적인 방법 1가지만 익히도록 한다.
 
 iterator의 의미 \\
 내부적으로 iterator라는 변수가 어떤 관계를 가지는 중요하지 않음. \\
 일단 iterator를 가지고 온 후에는 데이터 집합체가 뭐냐에 신경을 쓸 필요가 없어짐. \\
-Iterator만 가져오면, 그냥 MovNext()와 current를 반복하면서 원소들에 대해서 처리를 하면 됨. \\
+Iterator만 가져오면, 그냥 MovNext()와 current를 반복하면서 원소들에 대해서 처리를 하면 됨. 
 
 ~~~    
     Stack<int> theStack = new Stack<int>();

@@ -1,19 +1,19 @@
 ---
 
 layout: post
-title: ""
+title: "template"
 categories: Archives
-tags: [documentation,xx]
+tags: [documentation,template]
 image:
  feature:
  teaser:
  credit:
  creditlink:
-
+published: true
 ---
 
-#### Time : 2020-xx-xx
-#### Title : 
+#### Time : 2020-12-31
+#### Title : template
 
 #### reference
 
