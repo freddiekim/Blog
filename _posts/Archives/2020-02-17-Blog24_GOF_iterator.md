@@ -13,10 +13,12 @@ image:
 ---
 
 #### Time : 2020-02-05
-#### Title : GOF Design Pattern Basic
+#### Title : GOF Design Pattern iterator
 
 #### reference
 
+0. [GOF 디자인 패턴](http://iilii.egloos.com/tag/디자인패턴)
+0. [클린코드 & 디자인 패턴](https://hyesun03.github.io/archive/)
 1. [참조1](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/concepts/iterators)
 2. [참조2](http://iilii.egloos.com/3788564)
 

@@ -17,17 +17,17 @@ image:
 
 #### reference
 
-1. [GOF 디자인 패턴](http://iilii.egloos.com/tag/디자인패턴)
-2. [클린코드 & 디자인 패턴](https://hyesun03.github.io/archive/)
+0. [GOF 디자인 패턴](http://iilii.egloos.com/tag/디자인패턴)
+0. [클린코드 & 디자인 패턴](https://hyesun03.github.io/archive/)
+1. [참조1](http://iilii.egloos.com/m/3902774) 
+2. [참조2](https://flowarc.tistory.com/entry/디자인-패턴-옵저버-패턴Observer-Pattern?category=562154) 
+3. [참조3](https://docs.microsoft.com/ko-kr/dotnet/standard/events/observer-design-pattern#applying-the-pattern) 
 
-***
 #### GOF design pattern 기초
 어려워서 공부를 못했는데 쉽게 적어 놓은 사이트를 알게 되어서 위 참고 자료를 보고 공부해야겠다.
 
-1. Observer Pattern \\
-[참조1](http://iilii.egloos.com/m/3902774) \\
-[참조2](https://flowarc.tistory.com/entry/디자인-패턴-옵저버-패턴Observer-Pattern?category=562154) \\
-[참조3](https://docs.microsoft.com/ko-kr/dotnet/standard/events/observer-design-pattern#applying-the-pattern) \\
+1. Observer Pattern 
+
 난이도 순이다. 참조하자! \\
 참조 1을 구현해보자!. 
 

@@ -72,3 +72,7 @@ image:
 ### step3
 
 -	1번 동영상을 참조하는것이 훨씬 더 좋다.
+
+### step4 
+
+-   게시판 https://17billion.github.io/jekyll/disqus/reply/2017/06/01/jekyll_disqus.html

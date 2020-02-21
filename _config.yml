@@ -29,7 +29,7 @@ navigation:
   url: /AboutMe
 
 paginate:            6
-disqus:              #"your-disqus"
+disqus:              "https://freddiekim.disqus.com"  #"your-disqus"
 
 # Build settings
 markdown:            kramdown
