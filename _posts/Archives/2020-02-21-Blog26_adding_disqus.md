@@ -1,15 +1,13 @@
 ---
-
 layout: post
 title: "Adding comment"
 categories: Archives
-tags: [documentation,disqus]
+tags: [documentation,comment]
 image:
  feature:
  teaser:
  credit:
  creditlink:
-
 ---
 
 #### Time : 2020-02-21
@@ -52,11 +50,7 @@ rm -rf blog/
 ~~~
 
 layout.html 에 있는 댓글 추가 구문
-~~~
-{% if site.disqus %}
-  {% include disqus.html %}
-{% endif %}
-~~~
+
 
 
 
