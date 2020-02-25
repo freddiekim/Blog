@@ -32,10 +32,10 @@ image:
 또는 메소드에 집어넣어 코드의 중복을 제거할 수 있고 \\
 나중에 관리할때도 한 군데에만 신경을 쓰면 됨.
 
-[참조1-추상,팩토리,정적팩토리설명](http://blog.daum.net/question0921/65)
-[예제참조1](https://victorydntmd.tistory.com/300?category=719467)
-[위키-추상팩토리](https://ko.wikipedia.org/wiki/추상_팩토리_패턴)
-[위키-팩토리메서드](https://ko.wikipedia.org/wiki/팩토리_메서드_패턴)
+[참조1-추상,팩토리,정적팩토리설명](http://blog.daum.net/question0921/65) \\
+[예제참조1](https://victorydntmd.tistory.com/300?category=719467) \\
+[위키-추상팩토리](https://ko.wikipedia.org/wiki/추상_팩토리_패턴) \\
+[위키-팩토리메서드](https://ko.wikipedia.org/wiki/팩토리_메서드_패턴) 
 
 
 

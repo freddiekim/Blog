@@ -12,7 +12,7 @@ image:
 
 ---
 
-#### Time : 2020-xx-xx
+#### Time : 2020-02-10
 #### Title : How to use Dock Panel Suite
 
 #### reference
