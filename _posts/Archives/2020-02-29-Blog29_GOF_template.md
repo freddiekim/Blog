@@ -22,6 +22,9 @@ published: true
 3. [head first Design Pattern - 템플릿 메소드 패턴](http://wiki.gurubee.net/pages/viewpage.action?pageId=1507409)
 
 ***
+
+아래 내용들은 위 reference를 이용해서 짜집기 해서 만들었습니다. 
+
 #### Template Method Pattern 이란?
 
 예제는 위 reference를 참고해서 수정해서 사용했습니다. \\
@@ -72,6 +75,7 @@ Hook 방법을 사용하면 쉽게 구현 할 수 있음.
 
 ~~~
 
+아래 함수가 핵심이 되는 template method pattern이 들어간 클래스 이다.
 ~~~
 
     public abstract class CaffeinBeverageWithHook

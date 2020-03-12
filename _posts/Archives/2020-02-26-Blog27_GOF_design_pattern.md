@@ -17,12 +17,17 @@ published: true
 
 #### reference
 
+0. [명월일지-디자인 패턴 공부 전에 읽으면 좋은글](https://nowonbun.tistory.com/430?category=838281)
 0. [GOF 디자인 패턴](http://iilii.egloos.com/tag/디자인패턴)
 0. [Head and first Design Pattrn](http://wiki.gurubee.net/pages/viewpage.action?pageId=1507372)
 1. [위키 디자인 패턴-영어](https://en.wikipedia.org/wiki/Design_Patterns) 
 2. [위키 디자인 패턴-한글](https://ko.wikipedia.org/wiki/디자인_패턴_(책))
 
 ***
+#### 디자인 패턴의 의미??
+0. [명월일지-디자인 패턴 공부 전에 읽으면 좋은글](https://nowonbun.tistory.com/430?category=838281) \\
+위 글을 읽고 많은 생각을 했다. 내가 생각 했던 것 보다. 더 중요하구나.
+
 #### 디자인 패턴 이란?
 
 이 용어를 소프트웨어 개발 영역에서 구체적으로 처음 제시한 곳은, GoF(Gang of Four)라 불리는 네명의 컴퓨터 과학 연구자들이 쓴 서적 'Design Patterns: Elements of Reusable Object-Oriented Software'(재이용 가능한 객체지향 소프트웨어의 요소 - 디자인 패턴)이다. \\
@@ -71,7 +76,7 @@ GoF는 컴퓨터 소프트웨어 공학 분야의 연구자인 에릭 감마(Er
 1. 옵저버 패턴 - 완료
 2. 데코레이터 패턴 -
 3. 팩토리 패턴 - 작성중
-4. 싱글턴 패턴 - 
+4. 싱글턴 패턴 - 작성중
 5. 커맨드 패턴 
 6. 어댑터 패턴 - 완료 
 7. 퍼사드 패턴 

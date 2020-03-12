@@ -24,9 +24,10 @@ image:
 3. [참조3-c# 스터디](https://www.csharpstudy.com/CSharp/CSharp-yield.aspx)
 
 ***
-#### GOF design pattern 기초
 
-위 참조 사이트를 참조해서 작성했습니다. 
+아래 내용들은 위 reference를 참고해서 수정해서 사용했습니다. \\
+
+#### GOF design pattern 기초
 
 1. Iterator Pattern 
 
