@@ -1,11 +1,17 @@
-### 2020-02-05
--	first commit in 2020.
--	restart github to jump more high.
-### 2017-05-07
+### reference 
+https://github.com/LeNPaul/Lagrange/blob/gh-pages/README.md
 
--	first my github blog invention.
--	add gitignore.
--	add a blog post and a diary post
+### before getting started
+#### Git 설치히기
+- http://git-scm.com/download/mac
+- $ brew install git
 
-### 2018-08-25
-- last update
+#### brew 설치하기
+- https://brew.sh/index_ko
+- /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+#### jekyll 설치하기
+- 기존에 설치되어 있음.
+
+#### 실행하기
+- jekyll serve --baseurl '' --watch
