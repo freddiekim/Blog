@@ -2,7 +2,7 @@
 
 layout: post
 title: "hellow github blog!"
-categories: diary
+categories: Diary
 tags: [documentation,sample]
 image:
  feature: bag.jpg

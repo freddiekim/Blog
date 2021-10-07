@@ -15,3 +15,10 @@ https://github.com/LeNPaul/Lagrange/blob/gh-pages/README.md
 
 #### 실행하기
 - jekyll serve --baseurl '' --watch
+
+### 터미널 단축기 실행
+- https://blog.dork94.com/133
+- comman + ctrl + T
+
+
+

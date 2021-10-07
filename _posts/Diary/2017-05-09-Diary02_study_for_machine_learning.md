@@ -2,8 +2,8 @@
 
 layout: post
 title: "the study of machine learing"
-categories: diary
-tags: [documentation,sample]
+categories: Diary
+tags: [documentation,Diary]
 image:
  feature: computer.jpg
  teaser: computer-teaser.jpg

@@ -7,7 +7,8 @@ title: Diary
 ---
 
 <ul class="posts">
-  {% for post in site.categories.diary %}
+
+  {% for post in site.categories.Diary %}
     {% unless post.next %}
       <h3>{{ post.date | date: '%Y' }}</h3>
     {% else %}
