@@ -56,7 +56,7 @@ eval "$(rbenv init -)"
 6. git 설치하기.
 
 7. anaconda에서 pytorch설치하기.
--- ![윈도우 설정](../images/Install_pytorch_01.png)
+-- ![윈도우 설정](../images/bl_Install_pytorch_01.png)
 PREREQUISITES \\
 --- Installing on Windows
 8. visual studio code에 pytorch 연결 하기.
