@@ -6,13 +6,8 @@ title: About Me
 
 ---
 
-My name is freddie.
+사람이 인생을 살면서 흔적을 남긴다는것은 중요한것 같다.<br>
 
-I am interested in many things such as machine learning, radar signal processing algorithms, writing clean coding and development processing.
+여기에 나의 인생의 흔적을 남기고....<br>
 
-I don't want to be interested in one thing.
-
-I want to be studying the different topic what I am interested in at that time.
-
-I am going to leave a trace about my learning here. It may or may not be helpful for many people visiting my blog.
-however I will try to make this blog a precious space for me.
+10년뒤 20년뒤 되돌아 봐야겠다.....<br>
