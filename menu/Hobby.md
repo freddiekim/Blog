@@ -7,16 +7,13 @@ title: Hobby
 ---
 
 <ul class="posts">
+  {% assign nyear = 2000 %}
   {% for post in site.categories.Hobby %}
-    {% unless post.next %}
+    {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+    {% if year != nyear%}
+      {% assign nyear = year %}
       <h3>{{ post.date | date: '%Y' }}</h3>
-    {% else %}
-      {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
-      {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
-      {% if year != nyear %}
-        <h3>{{ post.date | date: '%Y' }}</h3>
-      {% endif %}
-    {% endunless %}
+    {% endif %}
 
     <li itemscope>
       <a href="{{ site.github.url }}{{ post.url }}">{{ post.title }}</a>

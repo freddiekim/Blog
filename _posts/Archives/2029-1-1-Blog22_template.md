@@ -12,7 +12,7 @@ image:
 published: false
 ---
 
-#### Time : 2020-12-31
+#### Time : 2022-12-31
 #### Title : template
 
 #### reference
@@ -21,7 +21,8 @@ published: false
 2. []()
 
 ***
-#### 
+#### tesla ai day때 영상
+
 
 
 
