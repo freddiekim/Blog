@@ -37,4 +37,4 @@ disqus:              "freddiekim" #"https://freddiekim.disqus.com"  #"your-disqu
 markdown:            kramdown
 highlighter:         rouge
 permalink:           none
-gems:                [jekyll-paginate]
+plugins:            [jekyll-paginate]

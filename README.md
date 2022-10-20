@@ -2,9 +2,27 @@
 https://github.com/LeNPaul/Lagrange/blob/gh-pages/README.md
 
 ### before getting started
-#### Git 설치히기
+#### Git 설치하기
 - http://git-scm.com/download/mac
 - $ brew install git
+
+### pbcopy 설정 for ubuntu
+- https://medium.com/tech-epic/how-to-use-pbcopy-on-ubuntu-f12940e5e18c
+우분투인 경우 아래 세팅한다.
+~~~
+gedit ~/.bashrc
+alias pbcopy=’xclip -selection clipboard’
+alias pbpaste=’xclip -selection clipboard -o’
+source ~/.bashrc
+~~~
+
+#### ssh 등록하기
+- https://www.lainyzine.com/ko/article/creating-ssh-key-for-github/
+~~~
+cat id_rsa.pub
+
+pbcopy < ~/.ssh/id_rsa.pub
+~~~
 
 #### brew 설치하기
 - https://brew.sh/index_ko
@@ -39,3 +57,7 @@ https://github.com/LeNPaul/Lagrange/blob/gh-pages/README.md
 ~~~
 
 - 출처 : https://stackoverflow.com/questions/11804820/how-can-i-embed-a-youtube-video-on-github-wiki-pages
+
+### visual studio code 에서 한글 입력이 잘 안될때
+- File -> Preferences -> Settings -> Text Editor -> Font -> Font Family  에서 'Droid Sans Fallback' 을 제거한다.
+- 출처 : https://smok95.tistory.com/283
