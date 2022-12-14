@@ -3,7 +3,7 @@
 layout: post
 title: "Pytorch-01-Installation"
 categories: Archives
-tags: [pytorch]
+tags: [documentation,pytorch]
 image:
  feature:
  teaser:
